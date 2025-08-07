@@ -40,3 +40,12 @@ sections.forEach(section => {
     section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
     sectionObserver.observe(section);
 });
+
+const topBar = document.querySelector('.top-bar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 0) {
+    topBar.classList.add('scrolled');
+  } else {
+    topBar.classList.remove('scrolled');
+  }
+});

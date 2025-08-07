@@ -1,104 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>환영합니다! OOO 개발자 포트폴리오</title> <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/style.css"> </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HJJ | 웹 | 포트폴리오</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <script src="js/script.js"></script> </body>
-    <header>
-        <div class="container">
-            <h1>안녕하세요, OOO 개발자입니다!</h1> <p>폭넓은 기술 스택으로 백엔드와 프론트엔드를 넘나들며 시너지를 창출합니다.</p>
-        </div>
-    </header>
-
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#about">소개</a></li>
-                <li><a href="#skills">기술 스택</a></li>
-                <li><a href="#projects">프로젝트</a></li>
-                <li><a href="#contact">연락</a></li>
-            </ul>
-        </div>
+  <header class="top-bar">
+    <div class="logo">Hong Jeong-jun's development portfolio</div>
+  </header>
+  <main>
+    <section id="intro" class="section" style="background-color: grey;">
+      <div class="categories" style="border: solid 1px red;">
+        <div class="category"><h1>Category A</h1></div>
+        <div class="category"><h1>Category B</h1></div>
+        <div class="category"><h1>Category C</h1></div>
+        <div class="category"><h1>Category D</h1></div>
+      </div>
+    </section>
+    <section id="about" class="section offset">
+      <h2>About Me</h2>
+      <p>간단 소개 글</p>
+    </section>
+    <section id="skills" class="section offset" style="background-color: grey;">
+      <h2>디벨롭 스텍</h2>
+    </section>
+    <section id="work" class="section offset">
+      <h2>Work (경력)</h2>
+    </section>
+  </main>
+  <footer class="bottom-bar">
+    <nav class="bottom-nav">
+      <a href="#intro">Intro</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </footer>
 
-    <main>
-        <section id="about" class="container">
-            <h2>👩‍💻 저를 소개합니다1</h2>
-            <p>
-                저는 JAVA, Python, Kotlin을 활용한 백엔드 개발은 물론, <br>
-                React, Javascript를 이용한 프론트엔드 개발까지 가능한 **'올라운드' 개발자**입니다. <br>
-                이는 한쪽 분야만 아는 개발자보다 시스템 전체를 이해하고, <br>
-                기획부터 구현까지 넓은 시야로 접근할 수 있는 저만의 강력한 차별점이라고 생각합니다.
-            </p>
-            <p>
-                Git을 통한 안정적인 버전 관리와 협업에 능숙하며, <br>
-                슬랙, 노션 등 다양한 협업 시스템 경험을 바탕으로 <br>
-                어떤 팀 환경에서도 빠르게 적응하여 성과를 만들어낼 수 있습니다.
-            </p>
-        </section>
-
-        <section id="skills" class="container">
-            <h2>🛠️ 기술 스택</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>백엔드</h3>
-                    <ul>
-                        <li>JAVA, Spring Boot</li>
-                        <li>Python, Django/Flask</li>
-                        <li>Kotlin</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>프론트엔드</h3>
-                    <ul>
-                        <li>HTML, CSS, JavaScript</li>
-                        <li>React</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>데이터베이스 & 도구</h3>
-                    <ul>
-                        <li>MySQL, PostgreSQL</li>
-                        <li>Git, GitHub</li>
-                        <li>Slack, Notion</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="container">
-            <h2>🚀 주요 프로젝트</h2>
-            <div class="project-item">
-                <h3>프로젝트 1: [프로젝트 제목]</h3>
-                <p><strong>기술 스택:</strong> React, Node.js, MongoDB</p>
-                <p>프로젝트에 대한 간략한 설명 (무엇을 만들었고, 어떤 문제 해결에 기여했는지)</p>
-                <a href="#" target="_blank">🔗 데모 링크</a> | <a href="#" target="_blank">📚 GitHub 링크</a>
-            </div>
-            <div class="project-item">
-                <h3>프로젝트 2: [프로젝트 제목]</h3>
-                <p><strong>기술 스택:</strong> Python, Django, PostgreSQL</p>
-                <p>또 다른 프로젝트에 대한 간략한 설명</p>
-                <a href="#" target="_blank">🔗 데모 링크</a> | <a href="#" target="_blank">📚 GitHub 링크</a>
-            </div>
-            </section>
-
-        <section id="contact" class="container">
-            <h2>📧 연락처</h2>
-            <p>궁금한 점이 있으시면 언제든지 편하게 연락주세요!</p>
-            <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-            <p>LinkedIn: <a href="#" target="_blank">나의 LinkedIn 프로필</a></p>
-            <p>GitHub: <a href="https://github.com/hjj" target="_blank">나의 GitHub 프로필</a></p> </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Your Name. All rights reserved.</p> </div>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
