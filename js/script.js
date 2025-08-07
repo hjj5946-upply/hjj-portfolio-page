@@ -1,18 +1,12 @@
 // 스크롤 시 부드럽게 이동하는 효과
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault(); // 기본 앵커 동작 방지
-
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 70, // 네비게이션 바 높이 고려하여 조정
-                behavior: 'smooth' // 부드러운 스크롤
-            });
-        }
-    });
+document.querySelectorAll('.category').forEach(category => {
+  category.addEventListener('click', () => {
+    const targetId = category.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 });
 
 // 섹션 나타내기 애니메이션 (스크롤 시)
@@ -48,4 +42,44 @@ window.addEventListener('scroll', () => {
   } else {
     topBar.classList.remove('scrolled');
   }
+});
+
+// 카테고리 클릭 시 해당 섹션으로 이동
+document.querySelectorAll('.category').forEach(category => {
+  category.addEventListener('click', () => {
+    const targetId = category.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const headerOffset = 80; // 상단 고정바 높이 고려
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = window.scrollY + elementPosition - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// 상단으로 스크롤 버튼
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+const introSection = document.getElementById('intro');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const introBottom = introSection.offsetTop + introSection.offsetHeight;
+
+  if (scrollY > introBottom) {
+    scrollTopBtn.classList.add('show');
+  } else {
+    scrollTopBtn.classList.remove('show');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 });

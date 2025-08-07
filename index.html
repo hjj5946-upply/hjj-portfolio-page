@@ -5,38 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HJJ | 웹 | 포트폴리오</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
   <header class="top-bar">
-    <div class="logo">Hong Jeong-jun's development portfolio</div>
+    <div class="logo">Hong Jeong-jun's Portfolio</div>
   </header>
   <main>
+    <h1><i class="fa-solid fa-angle-right"></i> 아이콘이 보여야 함</h1>
+    <!-- 섹션1: 카테고리 -->
     <section id="intro" class="section" style="background-color: grey;">
-      <div class="categories" style="border: solid 1px red;">
-        <div class="category"><h1>Category A</h1></div>
-        <div class="category"><h1>Category B</h1></div>
-        <div class="category"><h1>Category C</h1></div>
-        <div class="category"><h1>Category D</h1></div>
+      <div class="categories">
+        <div class="category" data-target="about"><h1><span>About Me </span><i class="fa-solid fa-angle-right"></i></h1></div>
+        <div class="category" data-target="skills"><h1><span>Tech Stack </span><i class="fa-solid fa-angle-right"></i></h1></div>
+        <div class="category" data-target="work"><h1><span>Projects </span><i class="fa-solid fa-angle-right"></i></h1></div>
+        <div class="category" data-target="contact"><h1><span>Contact </span><i class="fa-solid fa-angle-right"></i></h1></div>
       </div>
     </section>
-    <section id="about" class="section offset">
-      <h2>About Me</h2>
-      <p>간단 소개 글</p>
+
+    <!-- 섹션2: About -->
+    <section id="about" class="section about-section">
+        <div class="about-container">
+            <h1>About Me</h1>
+            <div class="a-c-f">
+                <div class="about-image">
+                    <img src="assets/img/profile.jpg" alt="Profile Image" />
+                </div>
+                <div class="about-info">
+                    <ul>
+                        <li><strong>이름:</strong> 홍정준</li>
+                        <li><strong>나이:</strong> 2006년생 (22세)</li>
+                        <li><strong>성별:</strong> 남성</li>
+                        <li><strong>혈액형:</strong> AB형</li>
+                        <li><strong>MBTI:</strong> ISTJ</li>
+                        <li><strong>거주지:</strong> 서울시 송파구</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- 섹션3: Skills -->
     <section id="skills" class="section offset" style="background-color: grey;">
-      <h2>디벨롭 스텍</h2>
+      <h2>Tech Stack</h2>
     </section>
+
+    <!-- 섹션4: Work -->
     <section id="work" class="section offset">
-      <h2>Work (경력)</h2>
+      <h2>Projects</h2>
+    </section>
+
+    <!-- 섹션5: Contact -->
+    <section id="contact" class="section offset" style="background-color: #f4f4f4;">
+      <h2>Contact</h2>
+      <p>이메일: example@email.com</p>
     </section>
   </main>
+
+  <button id="scrollTopBtn" class="scroll-top-btn" type="button" title="맨 위로 이동">
+    <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- 하단 바 -->
   <footer class="bottom-bar">
     <nav class="bottom-nav">
       <a href="#intro">Intro</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
+      <a href="#about">GitHub</a>
+      <a href="#skills">Instagram</a>
+      <a href="">Resume</a>
     </nav>
   </footer>
 
