@@ -6,14 +6,19 @@
   <title>HJJ | 웹 | 포트폴리오</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+</script>
 </head>
 <body>
   <header class="top-bar">
-    <div class="logo">Hong Jeong-jun's Portfolio</div>
+    <div class="logo" style="cursor: default;">Hong Jeong-jun's Portfolio</div>
   </header>
   <main>
     <!-- 섹션1: 카테고리 -->
-    <section id="intro" class="section" style="background-color: grey;">
+    <section id="intro" class="section section-one">
       <div class="categories">
         <div class="category" data-target="about"><h1><span>About Me </span><i class="fa-solid fa-angle-right"></i></h1></div>
         <div class="category" data-target="skills"><h1><span>Tech Stack </span><i class="fa-solid fa-angle-right"></i></h1></div>
@@ -25,15 +30,17 @@
     <!-- 섹션2: About -->
     <section id="about" class="section about-section">
         <div class="about-container">
-            <h1>About Me</h1>
+            <h1 style="font-size: 38px; margin-bottom: 50px;">About Me</h1>
             <div class="a-c-f">
                 <div class="about-image">
-                    <img src="assets/img/profile.jpg" alt="Profile Image" />
+                  <div class="img-box">
+                    <img src="assets/img/profile-img.png" alt="Profile Image" />
+                  </div>
                 </div>
                 <div class="about-info">
                     <ul>
                         <li><strong>이름:</strong> 홍정준</li>
-                        <li><strong>나이:</strong> 2006년생 (22세)</li>
+                        <li><strong>나이:</strong> 2019년생 (06세)</li>
                         <li><strong>성별:</strong> 남성</li>
                         <li><strong>혈액형:</strong> AB형</li>
                         <li><strong>MBTI:</strong> ISTJ</li>

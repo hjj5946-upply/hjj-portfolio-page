@@ -83,3 +83,16 @@ scrollTopBtn.addEventListener('click', () => {
     behavior: 'smooth'
   });
 });
+
+const logo = document.querySelector('.logo');
+const introSection2 = document.querySelector('#intro');
+
+window.addEventListener('scroll', () => {
+  const introBottom = introSection2.getBoundingClientRect().bottom;
+
+  if (introBottom <= 0) {
+    logo.classList.add('dark-logo');
+  } else {
+    logo.classList.remove('dark-logo');
+  }
+});

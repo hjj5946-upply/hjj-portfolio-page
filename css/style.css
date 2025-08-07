@@ -18,13 +18,13 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.5rem 2rem;
-  background: transparent; /* 완전 투명 */
-  backdrop-filter: none;   /* 흐림 효과 제거 */
+  padding: 1.5rem 5rem;
+  background: transparent;
+  backdrop-filter: none;
   -webkit-backdrop-filter: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  align-items: left;
   z-index: 1000;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
@@ -37,8 +37,14 @@ body {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 22px;
   font-weight: bold;
+  color: #e4e4e4;
+  transition: color 0.3s ease;
+}
+
+.dark-logo {
+  color: #414141; /* 스크롤 벗어나면 검정색 */
 }
 
 /* 3. 섹션 공통 스타일 */
@@ -50,6 +56,23 @@ body {
   align-items: center;         /* ✅ 수직 가운데로 수정 */
   box-sizing: border-box;
   padding: 0 2rem;             /* 좌우 패딩만 */
+}
+
+.section-one {
+  position: relative;
+  background: none;
+  overflow: hidden;
+  z-index:  1;
+}
+
+/* 배경 이미지 */
+.section-one::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('../assets/img/backg.jpg') no-repeat center center / cover;
+  opacity: 0.70;
+  z-index: 0;
 }
 
 /* .categories: 내용 박스, 좌측 정렬 */
@@ -72,7 +95,7 @@ body {
   animation: slideInLeft 0.6s forwards;
   cursor: pointer;
   transition: color 0.4s ease;
-
+  color: #c9c9c9;
 }
 
 .category span {
@@ -95,7 +118,8 @@ body {
 }
 
 .category:hover {
-  color: #FFFFFF; /* 원하는 색상으로 변경 */
+  color: #ffffff;
+  scale: 1.02;
 }
 
 .category:nth-child(1) { animation-delay: 0.2s; }
@@ -187,7 +211,7 @@ html {
   max-width: 1440px;
   width: 100%;
   gap: 4rem;
-  padding: 2rem;
+  padding: 15px 2rem;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -205,13 +229,16 @@ html {
   align-items: center;
 }
 
-.about-image img {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
+.img-box {
+  width: 400px;
+  height: 500px;
+  /* border: 1px red solid; */
+}
+.img-box img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
-  border-radius: 8px;
 }
 
 /* 우측 자기 정보 */
@@ -243,5 +270,27 @@ html {
 
   .about-info {
     align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .a-c-f {
+    flex-direction: column; /* ← 이것이 핵심 */
+    align-items: center;
+  }
+
+  .about-image,
+  .about-info {
+    width: 100%;
+  }
+
+  .about-info {
+    margin-top: 1.5rem;
   }
 }
