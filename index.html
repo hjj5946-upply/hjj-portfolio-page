@@ -29,40 +29,246 @@
 
     <!-- 섹션2: About me -->
     <section id="about" class="section about-section">
-        <div class="about-container">
-            <h1 style="font-size: 38px; margin-bottom: 50px;">About Me</h1>
-            <div class="a-c-f">
-                <div class="about-image">
-                  <div class="img-box">
-                    <img src="assets/img/profile-img.png" alt="Profile Image" />
-                  </div>
+      <div class="about-container">
+          <h1 style="font-size: 34px;">About Me</h1>
+          <div class="a-c-f">
+              <div class="about-image">
+                <div class="img-box">
+                  <img src="assets/img/profile-img.png" alt="Profile Image" />
                 </div>
-                <div class="about-info">
-                    <ul>
-                        <li><strong>이름:</strong> 홍정준</li>
-                        <li><strong>나이:</strong> 2019년생 (06세)</li>
-                        <li><strong>성별:</strong> 남성</li>
-                        <li><strong>혈액형:</strong> AB형</li>
-                        <li><strong>MBTI:</strong> ISTJ</li>
-                        <li><strong>거주지:</strong> 서울시 송파구</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+              </div>
+              <div class="about-info">
+                  <ul>
+                      <li><strong>이름:</strong> 홍정준</li>
+                      <li><strong>나이:</strong> 2019년생 (06세)</li>
+                      <li><strong>성별:</strong> 남성</li>
+                      <li><strong>혈액형:</strong> AB형</li>
+                      <li><strong>MBTI:</strong> ISTJ</li>
+                      <li><strong>거주지:</strong> 서울시 송파구</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
     </section>
 
     <!-- 섹션3: Skills -->
-    <section id="skills" class="section offset" style="background-color: grey;">
-      <h2>Tech Stack</h2>
+    <section id="skills" class="section-sub skills-marquee">
+      <div class="skill-column-container">
+        <h1 style="font-size: 34px;">Tech Stack</h2>
+        <!-- 1행 -->
+        <div class="marquee-row">
+          <div class="marquee-track">
+            <!-- 한 세트 -->
+            <img src="assets/icons/html5.svg" alt="HTML5">
+            <img src="assets/icons/css3.svg" alt="CSS3">
+            <img src="assets/icons/javascript.svg" alt="JavaScript">
+            <img src="assets/icons/python.svg" alt="Python">
+            <img src="assets/icons/kotlin.svg" alt="Kotlin">
+            <img src="assets/icons/java.svg" alt="Java">
+            <img src="assets/icons/react.svg" alt="React">
+            <img src="assets/icons/fastapi.svg" alt="FastAPI">
+            <img src="assets/icons/postgresql.svg" alt="PostgreSQL">
+            <img src="assets/icons/redis.svg" alt="Redis">
+            <img src="assets/icons/docker.svg" alt="Docker">
+            <img src="assets/icons/aws.svg" alt="AWS">
+            <!-- 무한루프용 복제 세트 -->
+            <img src="assets/icons/html5.svg" alt="HTML5">
+            <img src="assets/icons/css3.svg" alt="CSS3">
+            <img src="assets/icons/javascript.svg" alt="JavaScript">
+            <img src="assets/icons/python.svg" alt="Python">
+            <img src="assets/icons/kotlin.svg" alt="Kotlin">
+            <img src="assets/icons/java.svg" alt="Java">
+            <img src="assets/icons/react.svg" alt="React">
+            <img src="assets/icons/fastapi.svg" alt="FastAPI">
+            <img src="assets/icons/postgresql.svg" alt="PostgreSQL">
+            <img src="assets/icons/redis.svg" alt="Redis">
+            <img src="assets/icons/docker.svg" alt="Docker">
+            <img src="assets/icons/aws.svg" alt="AWS">
+          </div>
+        </div>
+
+        <!-- 2행 (속도/방향 살짝 다르게) -->
+        <div class="marquee-row reverse">
+          <div class="marquee-track">
+            <!-- 한 세트 -->
+            <img src="assets/icons/html5.svg" alt="HTML5">
+            <img src="assets/icons/css3.svg" alt="CSS3">
+            <img src="assets/icons/javascript.svg" alt="JavaScript">
+            <img src="assets/icons/python.svg" alt="Python">
+            <img src="assets/icons/kotlin.svg" alt="Kotlin">
+            <img src="assets/icons/java.svg" alt="Java">
+            <img src="assets/icons/react.svg" alt="React">
+            <img src="assets/icons/fastapi.svg" alt="FastAPI">
+            <img src="assets/icons/postgresql.svg" alt="PostgreSQL">
+            <img src="assets/icons/redis.svg" alt="Redis">
+            <img src="assets/icons/docker.svg" alt="Docker">
+            <img src="assets/icons/aws.svg" alt="AWS">
+            <!-- 복제 세트 -->
+            <img src="assets/icons/html5.svg" alt="HTML5">
+            <img src="assets/icons/css3.svg" alt="CSS3">
+            <img src="assets/icons/javascript.svg" alt="JavaScript">
+            <img src="assets/icons/python.svg" alt="Python">
+            <img src="assets/icons/kotlin.svg" alt="Kotlin">
+            <img src="assets/icons/java.svg" alt="Java">
+            <img src="assets/icons/react.svg" alt="React">
+            <img src="assets/icons/fastapi.svg" alt="FastAPI">
+            <img src="assets/icons/postgresql.svg" alt="PostgreSQL">
+            <img src="assets/icons/redis.svg" alt="Redis">
+            <img src="assets/icons/docker.svg" alt="Docker">
+            <img src="assets/icons/aws.svg" alt="AWS">
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- 섹션4: Work -->
-    <section id="work" class="section offset">
+    <!-- 섹션4: Projects -->
+    <section id="work" class="section projects-section">
       <h2>Projects</h2>
+
+      <div class="projects-grid">
+        <!-- P1 -->
+        <article class="project-card">
+          <header>
+            <h3>픽스터디 백엔드 리아키텍처</h3>
+            <div class="tags">
+              <span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>AWS</span>
+            </div>
+          </header>
+
+          <p class="tldr">TL;DR: P95 1.2s → <b>380ms</b> (-68%), 오류율 1.8% → <b>0.3%</b>.</p>
+
+          <ul class="metrics">
+            <li>QPS: 120 → <b>450</b></li>
+            <li>캐시 히트율: 0% → <b>62%</b></li>
+            <li>배포시간: 20분 → <b>5분</b></li>
+          </ul>
+
+          <div class="thumbs">
+            <img src="assets/img/arch-diagram-1.png" alt="Architecture Diagram" />
+            <img src="assets/img/grafana-latency.png" alt="Latency Chart" />
+          </div>
+
+          <div class="actions">
+            <button class="btn outline" data-modal="#p1">Read case study</button>
+            <a class="btn ghost" href="https://github.com/your/repo1" target="_blank">Repo</a>
+            <a class="btn ghost" href="https://api.example.com/docs" target="_blank">Live API</a>
+          </div>
+
+          <div class="modal" id="p1">
+            <div class="modal-body">
+              <button class="modal-close" aria-label="close">×</button>
+              <h4>문제 → 설계 → 결과</h4>
+              <ol class="detail">
+                <li><b>문제</b>: 피크에 타임아웃/DB 락 빈발, N+1 심각.</li>
+                <li><b>설계</b>: CQRS, Redis 캐시, 비동기 I/O, 인덱스/조인 재설계.</li>
+                <li><b>결과</b>: 응답시간 대폭 개선, 비용 -28%.</li>
+              </ol>
+              <h5>아키텍처</h5>
+              <img src="assets/img/arch-diagram-1.png" alt="Architecture" class="fullimg"/>
+              <h5>주요 엔드포인트</h5>
+              <details>
+                <summary>GET /academy/{id}</summary>
+                <pre><code>curl -s https://api.example.com/academy/123</code></pre>
+              </details>
+              <details>
+                <summary>POST /auth/login</summary>
+                <pre><code>curl -X POST https://api.example.com/auth/login \
+      -H "Content-Type: application/json" \
+      -d '{"email":"test@ex.com","password":"***"}'</code></pre>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <!-- P2 -->
+        <article class="project-card">
+          <header>
+            <h3>알림 & 가입요청 워크플로우</h3>
+            <div class="tags">
+              <span>Event Driven</span><span>Celery</span><span>FCM</span><span>Outbox</span>
+            </div>
+          </header>
+
+          <p class="tldr">승인 TAT <b>3h → 10m</b>, 중복요청 0건.</p>
+
+          <ul class="metrics">
+            <li>비동기 실패율: 3.2% → <b>0.4%</b></li>
+            <li>소비자 랙: <b>&lt; 50ms</b></li>
+          </ul>
+
+          <div class="thumbs">
+            <img src="assets/img/sequence-notify.png" alt="Sequence Diagram" />
+            <img src="assets/img/queue-dashboard.png" alt="Queue Dashboard" />
+          </div>
+
+          <div class="actions">
+            <button class="btn outline" data-modal="#p2">Read case study</button>
+            <a class="btn ghost" href="https://github.com/your/repo2" target="_blank">Repo</a>
+          </div>
+
+          <div class="modal" id="p2">
+            <div class="modal-body">
+              <button class="modal-close" aria-label="close">×</button>
+              <h4>핵심 설계</h4>
+              <ul class="detail">
+                <li>Outbox + 재시도 백오프, 상태머신 기반 승인/거절.</li>
+                <li>FCM 멀티 토픽, 실패 재큐잉.</li>
+              </ul>
+              <h5>운영 지표</h5>
+              <ul class="detail">
+                <li>도달률 99.3%</li>
+                <li>운영 이슈 티켓 -65%</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- P3 -->
+        <article class="project-card">
+          <header>
+            <h3>학원 차량/직원 관리(풀스택)</h3>
+            <div class="tags">
+              <span>Kotlin(Compose)</span><span>FastAPI</span><span>PostgreSQL</span>
+            </div>
+          </header>
+
+          <p class="tldr">차량 배정/삭제/담당자 연결까지 원스톱. UI/백엔드 전담.</p>
+
+          <ul class="metrics">
+            <li>CRUD 누적: <b>35+ 화면</b></li>
+            <li>에러 재현/수정 SLA: <b>&lt; 24h</b></li>
+          </ul>
+
+          <div class="thumbs">
+            <img src="assets/img/vehicle-list.png" alt="Vehicle List UI" />
+            <img src="assets/img/vehicle-api.png" alt="Vehicle API Docs" />
+          </div>
+
+          <div class="actions">
+            <button class="btn outline" data-modal="#p3">Read case study</button>
+          </div>
+
+          <div class="modal" id="p3">
+            <div class="modal-body">
+              <button class="modal-close" aria-label="close">×</button>
+              <h4>구현 포인트</h4>
+              <ul class="detail">
+                <li>학원-차량-직원 관계 설계, FK/제약 조건 정리.</li>
+                <li>직원 초대/가입요청/승인 플로우 통합 알림.</li>
+              </ul>
+              <h5>엔드포인트 샘플</h5>
+              <details>
+                <summary>GET /academy/{id}/vehicles</summary>
+                <pre><code>curl -s https://api.example.com/academy/321/vehicles</code></pre>
+              </details>
+            </div>
+          </div>
+        </article>
+      </div>
     </section>
 
     <!-- 섹션5: Contact -->
-    <section id="contact" class="section offset" style="background-color: #f4f4f4;">
+    <section id="contact" class="section-sub offset" style="background-color: #f4f4f4;">
       <h2>Contact</h2>
       <p>이메일: example@email.com</p>
     </section>

@@ -96,3 +96,25 @@ window.addEventListener('scroll', () => {
     logo.classList.remove('dark-logo');
   }
 });
+
+
+
+
+
+
+
+
+document.querySelectorAll('[data-modal]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const sel = btn.getAttribute('data-modal');
+    const modal = document.querySelector(sel);
+    modal?.classList.add('show');
+  });
+});
+document.querySelectorAll('.modal').forEach(m=>{
+  m.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('modal') || e.target.classList.contains('modal-close')){
+      m.classList.remove('show');
+    }
+  });
+});
