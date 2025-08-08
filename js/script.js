@@ -104,17 +104,62 @@ window.addEventListener('scroll', () => {
 
 
 
-document.querySelectorAll('[data-modal]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const sel = btn.getAttribute('data-modal');
-    const modal = document.querySelector(sel);
-    modal?.classList.add('show');
-  });
-});
-document.querySelectorAll('.modal').forEach(m=>{
-  m.addEventListener('click', (e)=>{
-    if(e.target.classList.contains('modal') || e.target.classList.contains('modal-close')){
-      m.classList.remove('show');
-    }
-  });
-});
+(function(){
+  const slider  = document.querySelector('.proj-slider');
+  const track   = slider.querySelector('.track');
+  const slides  = Array.from(track.children);
+  const prevBtn = slider.querySelector('.prev');
+  const nextBtn = slider.querySelector('.next');
+  const currentEl = slider.querySelector('.counter .current');
+  const totalEl   = slider.querySelector('.counter .total');
+
+  let index = 0;
+  totalEl.textContent = String(slides.length);
+
+  const getStep = () =>
+    slides[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 0);
+
+  const goTo = (i) => {
+    index = Math.max(0, Math.min(i, slides.length - 1));
+    const x = -getStep() * index;
+    track.style.transform = `translateX(${x}px)`;
+    updateNav();
+    currentEl.textContent = String(index + 1);
+  };
+
+  const updateNav = () => {
+    const atStart = index === 0;
+    const atEnd   = index === slides.length - 1;
+    prevBtn.disabled = atStart;
+    nextBtn.disabled = atEnd;
+  };
+
+  prevBtn.addEventListener('click', ()=> goTo(index - 1));
+  nextBtn.addEventListener('click', ()=> goTo(index + 1));
+
+  // 스와이프
+  let startX = 0, currentX = 0, dragging = false, startTx = 0;
+  const onStart = (clientX) => { dragging = true; startX = clientX; startTx = -getStep() * index; track.style.transition = 'none'; };
+  const onMove  = (clientX) => { if(!dragging) return; currentX = clientX; const dx = currentX - startX; track.style.transform = `translateX(${startTx + dx}px)`; };
+  const onEnd   = () => {
+    if(!dragging) return; dragging = false; track.style.transition = '';
+    const dx = currentX - startX, threshold = getStep() * 0.25;
+    if (dx < -threshold && index < slides.length - 1) goTo(index + 1);
+    else if (dx > threshold && index > 0) goTo(index - 1);
+    else goTo(index);
+  };
+
+  track.addEventListener('mousedown', e => onStart(e.clientX));
+  window.addEventListener('mousemove', e => onMove(e.clientX));
+  window.addEventListener('mouseup', onEnd);
+  track.addEventListener('touchstart', e => onStart(e.touches[0].clientX), {passive:true});
+  track.addEventListener('touchmove',  e => onMove(e.touches[0].clientX),  {passive:true});
+  track.addEventListener('touchend', onEnd);
+
+  // 키보드 & 리사이즈
+  slider.addEventListener('keydown', (e)=>{ if(e.key==='ArrowRight') goTo(index+1); if(e.key==='ArrowLeft') goTo(index-1); });
+  slider.tabIndex = 0;
+  window.addEventListener('resize', ()=> goTo(index));
+
+  goTo(0);
+})();
