@@ -13,19 +13,78 @@
   <title>HJJ | 웹 | 포트폴리오</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
   <script>
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
     });
   </script> 
+  <!-- <script>
+    const $key = (key) =>
+      document.querySelector(`kbd[data-key='${key}'], kbd[data-alt='${key}']`);
+
+    const codeToElement = {
+      CapsLock: $key('caps'),
+      Space: $key('space'),
+      Backslash: document.getElementById('backslash'),
+      Quote: document.getElementById('quote'),
+      ShiftLeft: $key('lshift'),
+      ShiftRight: $key('rshift'),
+      ControlLeft: $key('lctrl'),
+      ControlRight: $key('rctrl'),
+      AltLeft: $key('lalt'),
+      AltRight: $key('ralt'),
+      MetaLeft: $key('lwin'),
+      MetaRight: $key('rwin')
+    };
+
+    window.addEventListener('keydown', (e) => {
+      const key = (e.key || '').toLowerCase();
+      const el = codeToElement[e.code] || $key(key);
+      if (el) { el.classList.add('pressed'); e.preventDefault(); }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      const key = (e.key || '').toLowerCase();
+      const el = codeToElement[e.code] || $key(key);
+      if (el) { el.classList.remove('pressed'); e.preventDefault(); }
+    });
+  </script> -->
   <script>
-    (function(){
-      const lowPower =
-        (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
-        (navigator.deviceMemory && navigator.deviceMemory <= 4);
-      if (lowPower) document.documentElement.classList.add('low-power');
-    })();
+    document.addEventListener('DOMContentLoaded', function () {
+      const el = document.querySelector('.rgb-text');
+      if (!el) return;
+
+      // 이미 분해된 경우 중복 방지
+      if (!el.dataset.rgbSplit) {
+        const raw = el.textContent;
+        el.innerHTML = Array.from(raw).map(c => `<span>${c}</span>`).join('');
+        el.dataset.rgbSplit = '1';
+      }
+
+      const nodes = el.querySelectorAll('span');
+      const hues  = Array.from({length: nodes.length}, (_, i) => Math.round(i * (360 / nodes.length)));
+
+      // 초기 색 지정(+ 중요도 부여로 !important 이김)
+      for (let i=0;i<nodes.length;i++){
+        nodes[i].style.setProperty('color', `hsl(${hues[i]}, 100%, 58%)`, 'important');
+      }
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      function tick(){
+        for (let i=0;i<hues.length;i++){
+          hues[i] = (hues[i] - 1 + 360) % 360;
+          nodes[i].style.setProperty('color', `hsl(${hues[i]}, 100%, 58%)`, 'important');
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
   </script>
+
 </head>
 <body>
   <header class="top-bar">
@@ -34,11 +93,14 @@
   <main>
     <!-- 섹션1: 카테고리 -->
     <section id="intro" class="section section-one">
-      <div class="intro-background">
+      <!-- <div class="intro-background">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
         <div class="blob blob-4"></div>
+      </div> -->
+      <div class="rgb-text-bg" aria-hidden="true">
+        <h1 class="rgb-text">Hong Jeong-Jun</h1>
       </div>
       <div class="categories">
         <div class="category" data-target="about"><h1><span>About Me </span><i class="fa-solid fa-angle-right"></i></h1></div>
@@ -47,6 +109,82 @@
         <div class="category" data-target="projects"><h1><span>Projects </span><i class="fa-solid fa-angle-right"></i></h1></div>
         <div class="category" data-target="contact"><h1><span>Contact </span><i class="fa-solid fa-angle-right"></i></h1></div>
       </div>
+      <!-- <div class="keyboard-wrap keyboard-dock">
+        <div class="keyboard keyboard--neo">
+          <div class="row">
+            <kbd tabindex="1" data-key="`" data-alt="~"></kbd>
+            <kbd data-key="1" data-alt="!"></kbd>
+            <kbd data-key="2" data-alt="@"></kbd>
+            <kbd data-key="3" data-alt="#"></kbd>
+            <kbd data-key="4" data-alt="$"></kbd>
+            <kbd data-key="5" data-alt="%"></kbd>
+            <kbd data-key="6" data-alt="^"></kbd>
+            <kbd data-key="7" data-alt="&"></kbd>
+            <kbd data-key="8" data-alt="*"></kbd>
+            <kbd data-key="9" data-alt="("></kbd>
+            <kbd data-key="0" data-alt=")"></kbd>
+            <kbd data-key="-" data-alt="_"></kbd>
+            <kbd data-key="=" data-alt="+"></kbd>
+            <kbd data-key="backspace"></kbd>
+          </div>
+          <div class="row">
+            <kbd data-key="tab"></kbd>
+            <kbd data-key="q"></kbd>
+            <kbd data-key="w"></kbd>
+            <kbd data-key="e"></kbd>
+            <kbd data-key="r"></kbd>
+            <kbd data-key="t"></kbd>
+            <kbd data-key="y"></kbd>
+            <kbd data-key="u"></kbd>
+            <kbd data-key="i"></kbd>
+            <kbd data-key="o"></kbd>
+            <kbd data-key="p"></kbd>
+            <kbd data-key="[" data-alt="{"></kbd>
+            <kbd data-key="]" data-alt="}"></kbd>
+            <kbd data-key="\" data-alt="|" id="backslash"></kbd>
+          </div>
+          <div class="row">
+            <kbd data-key="caps"></kbd>
+            <kbd data-key="a"></kbd>
+            <kbd data-key="s"></kbd>
+            <kbd data-key="d"></kbd>
+            <kbd data-key="f"></kbd>
+            <kbd data-key="g"></kbd>
+            <kbd data-key="h"></kbd>
+            <kbd data-key="j"></kbd>
+            <kbd data-key="k"></kbd>
+            <kbd data-key="l"></kbd>
+            <kbd data-key=";" data-alt=":"></kbd>
+            <kbd data-key="'" data-alt='"' id="quote"></kbd>
+            <kbd data-key="enter"></kbd>
+          </div>
+          <div class="row">
+            <kbd data-key="lshift"></kbd>
+            <kbd data-key="z"></kbd>
+            <kbd data-key="x"></kbd>
+            <kbd data-key="c"></kbd>
+            <kbd data-key="v"></kbd>
+            <kbd data-key="b"></kbd>
+            <kbd data-key="n"></kbd>
+            <kbd data-key="m"></kbd>
+            <kbd data-key="," data-alt="<"></kbd>
+            <kbd data-key="." data-alt=">"></kbd>
+            <kbd data-key="/" data-alt="?"></kbd>
+            <kbd data-key="rshift"></kbd>
+          </div>
+          <div class="row">
+            <kbd data-key="lctrl"></kbd>
+            <kbd data-key="lwin"></kbd>
+            <kbd data-key="lalt"></kbd>
+            <kbd data-key="space"></kbd>
+            <kbd data-key="ralt"></kbd>
+            <kbd data-key="rwin"></kbd>
+            <kbd data-key="rctx"></kbd>
+            <kbd data-key="rctrl"></kbd>
+          </div>
+        </div>
+        <em>Press A Key</em>
+      </div> -->
     </section>
 
     <!-- 섹션2: About me -->
@@ -59,12 +197,21 @@
           </div>
           <div class="about-meta">
             <dl class="about-list">
-              <div><dt>이름</dt><dd>홍정준</dd></div>
-              <div><dt>나이</dt><dd>1993년생 (32세)</dd></div>
-              <div><dt>성별</dt><dd>남성</dd></div>
-              <div><dt>혈액형</dt><dd>AB형</dd></div>
-              <div><dt>MBTI</dt><dd>ISTJ</dd></div>
-              <div><dt>거주지</dt><dd>경기도</dd></div>
+              <div>
+                <p>
+                  안녕하세요! 7년 차 풀스택 개발자 홍정준입니다.
+
+                  HTML, CSS, JavaScript, Figma등 다양한 툴을 활용하여 웹사이트의 레이아웃과 디자인을 구성하고, 웹 표준과 웹 접근성을 준수하여 모든 사용자들이 웹사이트를 손쉽게 이용할 수 있도록 합니다.
+
+                  저는 디자인과 개발뿐만 아니라 기획과 마케팅에도 관심이 많아,
+                  서비스 운영에 대해 적극적인 자세로 임하고 있습니다.
+
+                  새로운 것을 배우는 것 또한 늘 환영합니다!
+
+                  맡은 일에 애정을 가지고 책임감 있게 업무를 수행합니다.
+                  주어진 역할에서 가치를 창출하며, 제 역량을 충분히 발휘하고자 합니다.
+                </p>
+              </div>
             </dl>
           </div>
         </div>
