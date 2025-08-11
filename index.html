@@ -26,6 +26,12 @@
   <main>
     <!-- 섹션1: 카테고리 -->
     <section id="intro" class="section section-one">
+      <div class="intro-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+      </div>
       <div class="categories">
         <div class="category" data-target="about"><h1><span>About Me </span><i class="fa-solid fa-angle-right"></i></h1></div>
         <div class="category" data-target="skills"><h1><span>Tech Stack </span><i class="fa-solid fa-angle-right"></i></h1></div>
@@ -37,30 +43,32 @@
 
     <!-- 섹션2: About me -->
     <section id="about" class="section about-section">
-      <div class="about-container">
-          <h1 style="font-size: 34px;">About Me</h1>
-          <div class="a-c-f">
-              <div class="about-image">
-                <div class="img-box">
-                  <img src="assets/img/profile-img.png" alt="Profile Image" />
-                </div>
-              </div>
-              <div class="about-info">
-                  <ul>
-                      <li><strong>이름:</strong> 홍정준</li>
-                      <li><strong>나이:</strong> 2019년생 (06세)</li>
-                      <li><strong>성별:</strong> 남성</li>
-                      <li><strong>혈액형:</strong> AB형</li>
-                      <li><strong>MBTI:</strong> ISTJ</li>
-                      <li><strong>거주지:</strong> 서울시 송파구</li>
-                  </ul>
-              </div>
+      <div class="about-inner">
+        <!-- 섹션 공통 타이틀 위치 -->
+        <h2 class="section-title">About Me</h2>
+
+        <!-- 내용: 데스크톱 2열 / 모바일 1열 -->
+        <div class="about-wrap">
+          <div class="about-photo">
+            <img src="assets/img/profile-img.png" alt="프로필 이미지" />
           </div>
+
+          <div class="about-meta">
+            <dl class="about-list">
+              <div><dt>이름</dt><dd>홍정준</dd></div>
+              <div><dt>나이</dt><dd>2019년생 (06세)</dd></div>
+              <div><dt>성별</dt><dd>남성</dd></div>
+              <div><dt>혈액형</dt><dd>AB형</dd></div>
+              <div><dt>MBTI</dt><dd>ISTJ</dd></div>
+              <div><dt>거주지</dt><dd>서울시 송파구</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- 섹션3: Skills -->
-    <section id="skills" class="section-sub skills-marquee">
+    <section id="skills" class="section-sub skills-marquee" aria-labelledby="intro-heading">
       <div class="skill-column-container">
         <h1 style="font-size: 34px;">Tech Stack</h1>
         <!-- 1행 -->
@@ -72,7 +80,7 @@
             <img src="assets/img/js.png" alt="JavaScript">
             <img src="assets/img/react.png" alt="React">
             <img src="assets/img/typescript.png" alt="Tsx">
-            <img src="assets/img/kotlin.PNG" alt="Kotlin">
+            <img src="assets/img/kotlin.png" alt="Kotlin">
             <img src="assets/img/photoshop.png" alt="photoshop">
 
             <img src="assets/img/html5.png" alt="HTML5">
@@ -80,7 +88,7 @@
             <img src="assets/img/js.png" alt="JavaScript">
             <img src="assets/img/react.png" alt="React">
             <img src="assets/img/typescript.png" alt="Tsx">
-            <img src="assets/img/kotlin.PNG" alt="Kotlin">
+            <img src="assets/img/kotlin.png" alt="Kotlin">
             <img src="assets/img/photoshop.png" alt="photoshop">
           </div>
         </div>
@@ -110,7 +118,7 @@
     </section>
 
     <!-- 섹션4: works -->
-    <section id="work" class="section projects-section">
+    <section id="work" class="section projects-section" aria-labelledby="intro-heading">
       <div class="projects-section-container">
         <h1 style="font-size: 34px;">Works</h1>
         <div class="proj-slider slide-container" aria-label="Projects carousel">
@@ -159,7 +167,7 @@
     </section>
 
     <!-- 섹션5: Projects (포트폴리오 갤러리) -->
-    <section id="projects" class="section-five projects-gallery-section">
+    <section id="projects" class="section-five projects-gallery-section" aria-labelledby="intro-heading">
       <div class="projects-gallery-container">
         <h1 style="font-size: 34px;">Projects</h1>
         <div class="gallery-grid">
@@ -192,7 +200,7 @@
 
     <!-- 섹션6: Contact -->
     <section id="contact" class="section-sub">
-      <div>
+      <div style="padding: 3rem 3rem;">
         <p>궁금하신 사항은 아래 메일로 문의 주시길 바랍니다.</p>
         <p>ekqkr1@ekqkr1.com</p>
       </div>
@@ -210,9 +218,9 @@
   <footer class="bottom-bar">
     <nav class="bottom-nav">
       <a href="#intro">Intro</a>
-      <a href="#about">GitHub</a>
-      <a href="#skills">Instagram</a>
-      <a href="">Resume</a>
+      <a target="_blank" href="#about">GitHub</a>
+      <a target="_blank" href="https://www.instagram.com/h_j_jjjjjjjjjj/">Instagram</a>
+      <a target="_blank" href="#">Resume</a>
     </nav>
   </footer>
 
