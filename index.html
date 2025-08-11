@@ -14,10 +14,18 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script>
-  document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-  });
-</script>
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+  </script> 
+  <script>
+    (function(){
+      const lowPower =
+        (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+        (navigator.deviceMemory && navigator.deviceMemory <= 4);
+      if (lowPower) document.documentElement.classList.add('low-power');
+    })();
+  </script>
 </head>
 <body>
   <header class="top-bar">
@@ -63,6 +71,7 @@
       </div>
     </section>
 
+    <!-- 섹션3: Tech skills -->
     <section id="skills" class="section-sub skills-marquee" aria-labelledby="intro-heading">
       <div class="skill-column-container">
         <h1 style="font-size: 34px;">Tech Stack</h1>
@@ -111,51 +120,61 @@
     </section>
 
     <!-- 섹션4: works -->
-    <section id="work" class="section projects-section" aria-labelledby="intro-heading">
-      <div class="projects-section-container">
-        <h1 style="font-size: 34px;">Works</h1>
-        <div class="proj-slider slide-container" aria-label="Projects carousel">
-          <div class="counter" aria-live="polite">
-            <span class="current">1</span> / <span class="total">3</span>
-          </div>
-          <button class="nav prev" aria-label="Previous">‹</button>
+    <section id="work" class="section work-section" aria-labelledby="work-heading">
+      <div class="work-inner">
+        <h2 id="work-heading" class="section-title">Works</h2>
 
-          <div class="viewport">
-            <div class="track">
-              <!-- Slide 1 -->
-              <article class="slide">
-                <img src="assets/img/proj1.png" alt="프로젝트 1 썸네일">
-                <div class="meta">
-                  <h3>픽스터디 백엔드 리아키텍처</h3>
-                  <p>P95 1.2s → 380ms, 비용 -28%</p>
-                  <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Redis</span></div>
-                </div>
-              </article>
-
-              <!-- Slide 2 -->
-              <article class="slide">
-                <img src="assets/img/proj2.png" alt="프로젝트 2 썸네일">
-                <div class="meta">
-                  <h3>알림 & 가입요청 워크플로우</h3>
-                  <p>승인 TAT 3h → 10m</p>
-                  <div class="tags"><span>Event</span><span>Celery</span><span>FCM</span></div>
-                </div>
-              </article>
-
-              <!-- Slide 3 -->
-              <article class="slide">
-                <img src="assets/img/proj3.png" alt="프로젝트 3 썸네일">
-                <div class="meta">
-                  <h3>차량/직원 관리(풀스택)</h3>
-                  <p>35+ 화면, SLA &lt; 24h</p>
-                  <div class="tags"><span>Kotlin</span><span>FastAPI</span></div>
-                </div>
-              </article>
+        <ol class="timeline">
+          <!-- 항목 1 -->
+          <li class="tl-item">
+            
+            <header class="tl-head">
+              <div class="dot"></div>
+              <h3 class="role">백엔드 엔지니어 <span class="company">@ 픽스터디</span></h3>
+              <time class="period">2023.07 – 2024.11</time>
+            </header>
+            <ul class="bullets">
+              <li>P95 1.2s → <b>380ms</b>, 오류율 1.8% → <b>0.3%</b>, 인프라 비용 <b>-28%</b></li>
+              <li>Redis 캐시·CQRS·비동기 I/O 도입, 인덱스/조인 재설계</li>
+              <li>배포 파이프라인 개편: <b>20분 → 5분</b></li>
+            </ul>
+            <div class="tags">
+              <span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>AWS</span><span>Docker</span>
             </div>
-          </div>
+          </li>
 
-          <button class="nav next" aria-label="Next">›</button>
-        </div>
+          <!-- 항목 2 -->
+          <li class="tl-item">
+            <header class="tl-head">
+              <div class="dot"></div>
+              <h3 class="role">풀스택 개발자 <span class="company">@ 학원 차량/직원관리</span></h3>
+              <time class="period">2022.03 – 2023.06</time>
+            </header>
+            <ul class="bullets">
+              <li>차량·직원·학원 관계 설계, CRUD 화면 <b>35+</b>개</li>
+              <li>가입요청/승인/알림 워크플로우, SLA <b>&lt; 24h</b></li>
+            </ul>
+            <div class="tags">
+              <span>Kotlin</span><span>Compose</span><span>FastAPI</span><span>PostgreSQL</span>
+            </div>
+          </li>
+
+          <!-- 항목 3 -->
+          <li class="tl-item">
+            <header class="tl-head">
+              <div class="dot"></div>
+              <h3 class="role">시스템 고도화</h3>
+              <time class="period">프리랜서 / 사이드</time>
+            </header>
+            <ul class="bullets">
+              <li>알림 파이프라인 개편: 승인 TAT <b>3h → 10m</b></li>
+              <li>Outbox, 백오프 재시도, FCM 토픽 분리로 실패율 <b>0.4%</b></li>
+            </ul>
+            <div class="tags">
+              <span>Event-driven</span><span>Celery</span><span>FCM</span>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
