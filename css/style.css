@@ -244,32 +244,80 @@ kbd[data-key="space"]{width:250px;}
 .rgb-text-bg{
   position: absolute;
   inset: 0;
-  z-index: 1;              /* 카테고리/키보드(=2) 아래 */
+  z-index: 1;            
   pointer-events: none;
   display: flex;
-  align-items: flex-end;    /* 수직 하단 */
-  justify-content: flex-end;/* 수평 우측 */
+  align-items: flex-end;   
+  justify-content: flex-end;
   --rb-pad-x: min(4vw, 32px);
   --rb-pad-y: min(4vh, 32px);
   padding: 0 var(--rb-pad-x) var(--rb-pad-y) 0;
-  mix-blend-mode: screen;   /* 네온 느낌 유지 */
+  mix-blend-mode: screen; 
 }
 
 .rgb-text{
   font-family: "Libre Barcode 39 Text", system-ui, sans-serif;
   font-weight: 400;
-  color:#fff;
+  /* color:#fff; */
   opacity: .8;
-  /* 가변 크기: 데스크톱에서 크게, 모바일에서 자동 축소 */
   font-size: clamp(28px, 8vw, 120px);
   line-height: 1;
   text-align: center;
-  /* 은은한 네온 글로우 */
+
+  color: transparent;             
+  position: relative;
+  filter: drop-shadow(0 0 14px rgba(255,255,255,.08));
+
   text-shadow:
     0 0 6px rgba(255,255,255,.35),
     0 0 18px rgba(160,160,255,.25);
   transform: translateZ(0);
   will-change: color;
+}
+
+.rgb-text span{
+  position: relative;
+  -webkit-text-stroke: 0.8px rgba(255,255,255,0.95);   /* 유리 튜브 코어 */
+  text-shadow:                                          /* 즉시 발광 */
+    0 0 2px  #fff,
+    0 0 8px  currentColor,
+    0 0 18px currentColor,
+    0 0 36px currentColor;
+  animation: neon-flicker 3.6s ease-in-out infinite;    /* 랜덤 딜레이/속도는 JS에서 부여 */
+}
+.rgb-text span::before,
+.rgb-text span::after{
+  content: attr(data-char);
+  position:absolute; inset:0;
+  color: currentColor;
+  pointer-events:none;
+  mix-blend-mode: screen;
+}
+.rgb-text span::before{ filter: blur(2.5px); opacity:.95; }
+.rgb-text span::after { filter: blur(7px);   opacity:.65; }
+
+/* 전체적인 맥동(천천히 밝아졌다 어두워짐) */
+.rgb-text{
+  animation: neon-breathe 5.5s ease-in-out infinite;
+}
+/* 깜빡임/맥동 키프레임 */
+@keyframes neon-flicker{
+  0%, 100% { opacity:.95; }
+  45%      { opacity:1;   }
+  46%      { opacity:.55; }  /* 순간 깜빡임 */
+  60%      { opacity:.9;  }
+  90%      { opacity:.85; }
+}
+
+@keyframes neon-breathe{
+  0%,100% { filter: drop-shadow(0 0 14px rgba(255,255,255,.08)) brightness(1.05) saturate(1.18); }
+  50%     { filter: drop-shadow(0 0 22px rgba(255,255,255,.12)) brightness(1.22) saturate(1.35); }
+}
+
+@media (min-width: 769px){
+  .rgb-text-bg{
+    padding: 0 130px 160px 0;
+  }
 }
 
 /* 모바일: 섹션1의 하단 가운데 */
