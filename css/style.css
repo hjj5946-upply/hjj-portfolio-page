@@ -624,8 +624,15 @@ html {
 
 .about-meta{ align-self:start; }
 .about-list{
-  display:grid; grid-template-columns:auto 1fr;
-  column-gap:1rem; row-gap:.6rem;
+  display:grid; 
+  grid-template-columns:auto 1fr;
+  column-gap:1rem; 
+  row-gap:.6rem;
+}
+.about-list-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 .about-list dt{ font-weight:700; color:#555; }
 .about-list dd{ margin:0; color:#222; }
@@ -636,6 +643,140 @@ html {
   .about-list{ grid-template-columns:1fr; }
   .section-title {
     text-align: center;
+  }
+}
+
+.about-meta { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; }
+.about-intro{
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+  line-height: 1.5;
+  letter-spacing: 0.02em;      
+  color:#222;
+  word-break: keep-all;      
+  max-width: 60ch;           
+  margin: 0;
+}
+.about-intro2 {
+  font-size: clamp(1.1rem, 1.0rem + 0.4vw, 1.14rem);
+  letter-spacing: 0.02em;      
+  color:#222;
+  word-break: keep-all;      
+  max-width: 60ch;           
+  margin: 0;
+}
+.about-intro b{ color:#0f172a; font-weight:700; }
+
+/* 액션(텍스트 버튼) */
+.about-actions{
+  display:flex;
+  justify-content: center; 
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top: 14px;
+}
+.text-btn{
+  position: relative;
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 6px 0;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color:#0f172a;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(15,23,42, .25);
+  transition: color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.text-btn .arrow{ transform: translateY(-1px); transition: transform .2s ease; }
+.text-btn:hover{ color:#111; border-color: rgba(15,23,42,.55); }
+.text-btn:hover .arrow{ transform: translate(2px, -1px); }
+.text-btn:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15,23,42,.15);
+  border-radius: 6px;
+}
+
+/* 보조 링크(옅은 스타일) */
+.text-btn.alt{
+  color:#374151; border-color: rgba(55,65,81,.25);
+}
+.text-btn.alt:hover{
+  color:#1f2937; border-color: rgba(55,65,81,.5);
+}
+
+/* 모바일 정렬 */
+@media (max-width: 900px){
+  .about-intro{ margin-inline:auto; }
+  .about-actions{ justify-content:center; }
+}
+
+
+/* 기본 텍스트 버튼 스타일이 이미 있다면, 아래 .cta 부분만 추가해도 됨 */
+.text-btn.cta{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  /* 안쪽은 흰색, 바깥은 그라디언트 보더 */
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90deg,#7c3aed,#06b6d4,#22c55e,#f59e0b,#f43f5e,#7c3aed) border-box;
+  border: 2px solid transparent;
+  background-size: 100% 100%, 300% 100%;
+  background-position: 0 0, 0% 50%;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-decoration: none;
+
+  transition: background-position .6s ease, transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.text-btn.cta:hover{
+  background-position: 0 0, 100% 50%;            /* 보더 그라디언트가 흐르는 느낌 */
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(124,58,237,.12);
+}
+
+.text-btn.cta:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124,58,237,.18);
+}
+
+/* 화살표 네온 느낌 */
+.text-btn.cta .arrow svg{
+  display:block;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(124,58,237,.35));
+  transform: translateY(-1px);
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.text-btn.cta:hover .arrow svg{
+  transform: translate(4px, -1px);
+  filter: drop-shadow(0 0 10px rgba(6,182,212,.45));
+}
+
+/* (선택) 화살표 선이 그려지는 듯한 효과 */
+.text-btn.cta .arrow path{
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+}
+.text-btn.cta:hover .arrow path{ stroke-dashoffset: 0; }
+
+/* 모션 최소화 선호 대응 */
+@media (prefers-reduced-motion: reduce){
+  .text-btn.cta,
+  .text-btn.cta .arrow svg,
+  .text-btn.cta .arrow path{
+    transition: none !important;
+    transform: none !important;
   }
 }
 
