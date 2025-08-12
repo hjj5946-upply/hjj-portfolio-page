@@ -78,6 +78,9 @@ window.addEventListener('resize', () => {
   onScroll();
 });
 
+
+
+
 // ========== 4) Works 슬라이더(화살표·스와이프·카운터) ==========
 (function(){
   const slider  = $('.proj-slider');

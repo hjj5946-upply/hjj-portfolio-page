@@ -805,8 +805,8 @@ html {
 }
 
 .marquee-row {
-  --gap: 4.5rem; 
-  --speed: 20s;          
+  --gap: clamp(2rem, 4vw, 4.5rem); 
+  --speed: 26s;         
   position: relative;
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
@@ -834,10 +834,10 @@ html {
 
 @media (max-width: 768px) {
   .marquee-row {
-    --speed: 12s; 
+    --speed: 16s; 
   }
   .marquee-row.reverse .marquee-track {
-    animation-duration: 12s; 
+    animation-duration: 16s; 
   }
 }
 

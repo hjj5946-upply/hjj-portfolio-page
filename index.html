@@ -84,7 +84,13 @@
       requestAnimationFrame(tick);
     });
   </script>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('#skills .marquee-track');
+      const originals = [...track.children];
+      originals.forEach(node => track.appendChild(node.cloneNode(true)));
+    });
+  </script>
 </head>
 <body>
   <!-- header -->
@@ -204,7 +210,7 @@
                   <b>Kotlin(Android) · React/TypeScript · Python(FastAPI) · Java/Spring Boot</b>를 기반으로 B2C와 내부 도구를 다년간 운영했습니다.<br><br>
                   요구 정리 → IA/UX 구상 → 데이터 모델링/API 설계 → CI/CD·모니터링까지 <b>엔드투엔드</b>로 책임집니다.<br><br>
                   모바일/웹의 성능·안정성 개선을 지표로 검증하고, 장애 대응·관측(로그/트레이싱/알림)에 익숙합니다.<br><br>
-                  디자이너 없이도 <b>와이어프레임·반응형·접근성</b>을 고려한 UI/UX를 빠르게 설계·구현합니다.<br>
+                  디자이너 없이도 <b>와이어프레임·반응형·접근성</b>을 고려해 UI/UX를 신속히 설계·구현합니다.<br>
                 </p>
               </div>
               <div class="about-actions">
@@ -226,46 +232,21 @@
     <!-- 섹션3: Tech skills -->
     <section id="skills" class="section-sub skills-marquee" aria-labelledby="intro-heading">
       <div class="skill-column-container">
-        <h1 style="font-size: 34px;">Tech Stack</h1>
+        <h1 id="skills-heading" style="font-size: 34px;">Tech Stack</h1>
         <div class="marquee-row">
           <div class="marquee-track">
-            <img src="assets/img/html5.png" alt="HTML5">
-            <img src="assets/img/css.png" alt="CSS3">
-            <img src="assets/img/js.png" alt="JavaScript">
-            <img src="assets/img/react.png" alt="React">
-            <img src="assets/img/typescript.png" alt="Tsx">
-            <img src="assets/img/kotlin.PNG" alt="Kotlin">
-            <img src="assets/img/photoshop.png" alt="photoshop">
-
-            <img src="assets/img/html5.png" alt="HTML5">
-            <img src="assets/img/css.png" alt="CSS3">
-            <img src="assets/img/js.png" alt="JavaScript">
-            <img src="assets/img/react.png" alt="React">
-            <img src="assets/img/typescript.png" alt="Tsx">
-            <img src="assets/img/kotlin.png" alt="Kotlin">
-            <img src="assets/img/photoshop.png" alt="photoshop">
-          </div>
-        </div>
-
-        <div class="marquee-row reverse">
-          <div class="marquee-track">
-            <img src="assets/img/java.png" alt="java">
-            <img src="assets/img/c-sharp.png" alt="c-sharp">
-            <img src="assets/img/python.png" alt="Python">
-            <img src="assets/img/mysql.png" alt="Mysql">
-            <img src="assets/img/postgre.png" alt="PostgreSQL">
-            <img src="assets/img/github.png" alt="Github">
-            <img src="assets/img/jira.png" alt="Jira">
-            <img src="assets/img/unity.png" alt="unity">
-
-            <img src="assets/img/java.png" alt="JAVA">
-            <img src="assets/img/c-sharp.png" alt="C#">
-            <img src="assets/img/python.png" alt="Python">
-            <img src="assets/img/mysql.png" alt="Mysql">
-            <img src="assets/img/postgre.png" alt="PostgreSQL">
-            <img src="assets/img/github.png" alt="Github">
-            <img src="assets/img/jira.png" alt="Jira">
-            <img src="assets/img/unity.png" alt="unity">
+            <img src="assets/img/python.png" alt="Python" decoding="async">
+            <img src="assets/img/java.png" alt="java" decoding="async">
+            <img src="assets/img/kotlin.PNG" alt="Kotlin" decoding="async">
+            <img src="assets/img/spring.png" alt="Spring" decoding="async">
+            <img src="assets/img/react.png" alt="React" decoding="async">
+            <img src="assets/img/typescript.png" alt="Tsx" decoding="async">
+            <img src="assets/img/mysql.png" alt="Mysql" decoding="async">
+            <img src="assets/img/postgre.png" alt="PostgreSQL" decoding="async">
+            <img src="assets/img/html5.png" alt="HTML5" decoding="async">
+            <img src="assets/img/css.png" alt="CSS3" decoding="async">
+            <img src="assets/img/js.png" alt="JavaScript" decoding="async">
+            <img src="assets/img/c-sharp.png" alt="c-sharp" decoding="async">
           </div>
         </div>
       </div>
