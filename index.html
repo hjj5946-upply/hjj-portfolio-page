@@ -115,6 +115,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.copy-btn');
+  const status = document.getElementById('copy-status');
+  if (!btn) return;
+
+  const email = btn.dataset.copy;
+  const original = btn.innerHTML;
+  const checkIcon = `
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+
+  btn.addEventListener('click', async () => {
+    try {
+      await (navigator.clipboard?.writeText(email));
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = email; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    btn.innerHTML = checkIcon;
+    status.textContent = '이메일 주소가 복사되었습니다.';
+    setTimeout(() => { btn.innerHTML = original; status.textContent=''; }, 1200);
+  });
+});
+</script>
 </head>
 <body>
   <!-- header -->
@@ -140,82 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="category" data-target="projects"><h1><span>Projects </span><i class="fa-solid fa-angle-right"></i></h1></div>
         <div class="category" data-target="contact"><h1><span>Contact </span><i class="fa-solid fa-angle-right"></i></h1></div>
       </div>
-      <!-- <div class="keyboard-wrap keyboard-dock">
-        <div class="keyboard keyboard--neo">
-          <div class="row">
-            <kbd tabindex="1" data-key="`" data-alt="~"></kbd>
-            <kbd data-key="1" data-alt="!"></kbd>
-            <kbd data-key="2" data-alt="@"></kbd>
-            <kbd data-key="3" data-alt="#"></kbd>
-            <kbd data-key="4" data-alt="$"></kbd>
-            <kbd data-key="5" data-alt="%"></kbd>
-            <kbd data-key="6" data-alt="^"></kbd>
-            <kbd data-key="7" data-alt="&"></kbd>
-            <kbd data-key="8" data-alt="*"></kbd>
-            <kbd data-key="9" data-alt="("></kbd>
-            <kbd data-key="0" data-alt=")"></kbd>
-            <kbd data-key="-" data-alt="_"></kbd>
-            <kbd data-key="=" data-alt="+"></kbd>
-            <kbd data-key="backspace"></kbd>
-          </div>
-          <div class="row">
-            <kbd data-key="tab"></kbd>
-            <kbd data-key="q"></kbd>
-            <kbd data-key="w"></kbd>
-            <kbd data-key="e"></kbd>
-            <kbd data-key="r"></kbd>
-            <kbd data-key="t"></kbd>
-            <kbd data-key="y"></kbd>
-            <kbd data-key="u"></kbd>
-            <kbd data-key="i"></kbd>
-            <kbd data-key="o"></kbd>
-            <kbd data-key="p"></kbd>
-            <kbd data-key="[" data-alt="{"></kbd>
-            <kbd data-key="]" data-alt="}"></kbd>
-            <kbd data-key="\" data-alt="|" id="backslash"></kbd>
-          </div>
-          <div class="row">
-            <kbd data-key="caps"></kbd>
-            <kbd data-key="a"></kbd>
-            <kbd data-key="s"></kbd>
-            <kbd data-key="d"></kbd>
-            <kbd data-key="f"></kbd>
-            <kbd data-key="g"></kbd>
-            <kbd data-key="h"></kbd>
-            <kbd data-key="j"></kbd>
-            <kbd data-key="k"></kbd>
-            <kbd data-key="l"></kbd>
-            <kbd data-key=";" data-alt=":"></kbd>
-            <kbd data-key="'" data-alt='"' id="quote"></kbd>
-            <kbd data-key="enter"></kbd>
-          </div>
-          <div class="row">
-            <kbd data-key="lshift"></kbd>
-            <kbd data-key="z"></kbd>
-            <kbd data-key="x"></kbd>
-            <kbd data-key="c"></kbd>
-            <kbd data-key="v"></kbd>
-            <kbd data-key="b"></kbd>
-            <kbd data-key="n"></kbd>
-            <kbd data-key="m"></kbd>
-            <kbd data-key="," data-alt="<"></kbd>
-            <kbd data-key="." data-alt=">"></kbd>
-            <kbd data-key="/" data-alt="?"></kbd>
-            <kbd data-key="rshift"></kbd>
-          </div>
-          <div class="row">
-            <kbd data-key="lctrl"></kbd>
-            <kbd data-key="lwin"></kbd>
-            <kbd data-key="lalt"></kbd>
-            <kbd data-key="space"></kbd>
-            <kbd data-key="ralt"></kbd>
-            <kbd data-key="rwin"></kbd>
-            <kbd data-key="rctx"></kbd>
-            <kbd data-key="rctrl"></kbd>
-          </div>
-        </div>
-        <em>Press A Key</em>
-      </div> -->
     </section>
 
     <!-- 섹션2: About me -->
@@ -367,10 +319,23 @@ document.addEventListener('DOMContentLoaded', () => {
     </section>
 
     <!-- 섹션6: Contact -->
-    <section id="contact" class="section-sub">
-      <div style="padding: 6rem 6rem;">
-        <p>궁금하신 사항은 아래 메일로 문의 주시길 바랍니다.</p>
-        <p>ekqkr1@ekqkr1.com</p>
+    <section id="contact" class="section-sub" style="background-color:#f9f9f9; padding: 4rem 0">
+      <div class="contact-min">
+        <p class="contact-line">문의사항은 아래 메일로 문의 주세요. 신속하게 답변드리겠습니다.</p>
+
+        <div class="contact-row">
+          <!-- 클릭 시 메일 앱 열기 -->
+          <a class="mailto" href="mailto:ekqkr1@ekqkr1.com">ekqkr1@ekqkr1.com</a>
+
+          <!-- 아이콘 버튼: 주소 복사 -->
+          <!-- <button class="copy-btn" type="button" data-copy="ekqkr1@ekqkr1.com" aria-label="이메일 주소 복사" title="주소 복사">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="2" y="2" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+          <span id="copy-status" class="sr-only" aria-live="polite"></span> -->
+        </div>
       </div>
     </section>
   </main>
