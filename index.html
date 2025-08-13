@@ -91,6 +91,30 @@
       originals.forEach(node => track.appendChild(node.cloneNode(true)));
     });
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('.copy-btn');
+  const status = document.getElementById('copy-status');
+  if (!btn) return;
+
+  btn.addEventListener('click', async () => {
+    const email = btn.dataset.copy;
+    try {
+      await (navigator.clipboard?.writeText(email));
+      btn.textContent = '복사됨';
+      status.textContent = '이메일 주소가 복사되었습니다.';
+    } catch {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = email; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      btn.textContent = '복사됨';
+      status.textContent = '이메일 주소가 복사되었습니다.';
+    }
+    setTimeout(() => { btn.textContent = '주소 복사'; status.textContent=''; }, 1600);
+  });
+});
+</script>
 </head>
 <body>
   <!-- header -->
@@ -111,7 +135,7 @@
       </div>
       <div class="categories">
         <div class="category" data-target="about"><h1><span>About Me </span><i class="fa-solid fa-angle-right"></i></h1></div>
-        <div class="category" data-target="skills"><h1><span>Tech Stack </span><i class="fa-solid fa-angle-right"></i></h1></div>
+        <!-- <div class="category" data-target="skills"><h1><span>Tech Stack </span><i class="fa-solid fa-angle-right"></i></h1></div> -->
         <div class="category" data-target="work"><h1><span>Works </span><i class="fa-solid fa-angle-right"></i></h1></div>
         <div class="category" data-target="projects"><h1><span>Projects </span><i class="fa-solid fa-angle-right"></i></h1></div>
         <div class="category" data-target="contact"><h1><span>Contact </span><i class="fa-solid fa-angle-right"></i></h1></div>
@@ -232,7 +256,6 @@
     <!-- 섹션3: Tech skills -->
     <section id="skills" class="section-sub skills-marquee" aria-labelledby="intro-heading">
       <div class="skill-column-container">
-        <h1 id="skills-heading" style="font-size: 34px;">Tech Stack</h1>
         <div class="marquee-row">
           <div class="marquee-track">
             <img src="assets/img/python.png" alt="Python" decoding="async">
@@ -344,24 +367,55 @@
     </section>
 
     <!-- 섹션6: Contact -->
-    <section id="contact" class="section-sub">
-      <div style="padding: 3rem 3rem;">
-        <p>궁금하신 사항은 아래 메일로 문의 주시길 바랍니다.</p>
-        <p>ekqkr1@ekqkr1.com</p>
+    <section id="contact" class="section-sub contact-section" aria-labelledby="contact-heading">
+      <div class="contact-inner">
+        <h2 id="contact-heading" class="section-title">Contact</h2>
+
+        <div class="contact-box">
+          <p class="contact-lead">
+            간단한 문의나 협업 제안은 아래 메일로 보내주세요.
+          </p>
+
+          <!-- 메일 주소 (클릭 시 메일 앱 열기) -->
+          <address class="contact-address">
+            <a class="mailto"
+              href="mailto:ekqkr1@ekqkr1.com?subject=%5BPortfolio%5D%20문의&body=안녕하세요%2C%20홍정준님.%0A%0A(간단한%20배경)%0A(요청/문의)%0A(연락%20가능%20시간)%0A%0A감사합니다.">
+              ekqkr1@ekqkr1.com
+            </a>
+          </address>
+
+          <div class="contact-actions">
+            <a class="btn mail-cta"
+              href="mailto:ekqkr1@ekqkr1.com?subject=%5BPortfolio%5D%20문의&body=안녕하세요%2C%20홍정준님.%0A%0A(간단한%20배경)%0A(요청/문의)%0A(연락%20가능%20시간)%0A%0A감사합니다."
+              aria-label="이메일 앱으로 문의하기">
+              이메일 보내기
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
+                <path d="M2 8H14M10 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <button class="btn copy-btn" type="button" data-copy="ekqkr1@ekqkr1.com" aria-describedby="copy-status">
+              주소 복사
+            </button>
+            <span id="copy-status" class="sr-only" aria-live="polite"></span>
+          </div>
+
+          <small class="contact-note">평일 기준 빠르게 회신드립니다.</small>
+        </div>
       </div>
-      
     </section>
   </main>
 
   <!-- TOP 버튼 -->
-  <button id="scrollTopBtn" class="scroll-top-btn" type="button" title="맨 위로 이동">
+  <button id="scrollTopBtn" class="scroll-top-btn" type="button" title="맨 위로 이동" >
     <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
 
   <!-- footer -->
-  <footer class="bottom-bar">
+  <footer class="bottom-bar" style="background-color: #000116;">
     <nav class="bottom-nav">
       <a href="#intro">Intro</a>
       <a target="_blank" href="#about">GitHub</a>

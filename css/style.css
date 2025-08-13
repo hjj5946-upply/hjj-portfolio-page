@@ -316,7 +316,7 @@ kbd[data-key="space"]{width:250px;}
 
 @media (min-width: 769px){
   .rgb-text-bg{
-    padding: 0 130px 160px 0;
+    padding: 0 130px 130px 0;
   }
 }
 
@@ -530,7 +530,6 @@ kbd[data-key="space"]{width:250px;}
 /* 하단바 */
 .bottom-bar {
   padding: 1.5rem 2rem;
-  background: #fff;
 }
 
 .bottom-nav {
@@ -542,14 +541,14 @@ kbd[data-key="space"]{width:250px;}
 
 .bottom-nav a {
   text-decoration: none;
-  color: inherit;
+  color: #ebebeb;
   font-weight: 500;
   font-size: 1.05rem;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .bottom-nav a:hover {
-  color: #0077ff; 
+  color: #ff38f5; 
   transform: translateY(-2px);
 }
 
@@ -595,7 +594,7 @@ html {
 
 
 /* 섹션 2 */
-.about-section { display:block; height:auto; padding:3rem 2rem; background:#f9f9f9; }
+.about-section { display:block; height:auto; padding:3rem 2rem; background:#ffffff; }
 .about-inner   { max-width:1440px; margin:0 auto; }
 .section-title { 
   font-size: 34px;
@@ -800,8 +799,9 @@ html {
 }
 
 .skills-marquee {
-  background: #ebebeb;
-  padding: 4rem 0 3rem;
+  /* background: #f9f9f9; */
+  background: #ffffff;
+  padding: 2rem 0 3rem;
 }
 
 .marquee-row {
@@ -842,7 +842,7 @@ html {
 }
 
 .marquee-track img {
-  height: 75px;        
+  height: 95px;        
   width: auto;
   object-fit: contain;
   opacity: 0.9;
@@ -864,14 +864,14 @@ html {
 }
 
 @media (max-width: 768px) {
-  .marquee-track img { height: 55px; }
-  .skills-marquee { padding: 2rem 0 2rem; }
+  .marquee-track img { height: 60px; }
+  .skills-marquee { padding: 1rem 0 2rem; }
 }
 
 
 
-/* 섹션4 */
-.work-section{ display:block; height:auto; padding:3rem 2rem; background:#fff; }
+/* 섹션 4 */
+.work-section{ display:block; height:auto; padding:3rem 2rem; background:#f9f9f9; }
 .work-inner{ max-width:1440px; margin:0 auto; }
 .section-title{ font-size:34px; margin-bottom:1.25rem; text-align:left; }
 @media (max-width:900px){ .section-title{ text-align:center; } }
@@ -931,7 +931,7 @@ html {
   padding: 3rem 2rem; /* 여백은 유지 */
 }
 
-.projects-gallery-section { background:#f4f4f4; }
+.projects-gallery-section { background:#ffffff; }
 .projects-gallery-container {
   max-width:1440px; 
   width:100%; 
@@ -1021,4 +1021,61 @@ html {
   .bottom-nav::-webkit-scrollbar { height: 6px; }
   .bottom-nav::-webkit-scrollbar-thumb { background: #ddd; border-radius: 999px; }
   .bottom-nav::-webkit-scrollbar-track { background: transparent; }
+}
+
+/* 섹션 6 */
+/* 레이아웃 */
+.contact-section{ background:#f9f9f9; }
+.contact-inner{ max-width:1440px; margin:0 auto; padding:3rem 2rem; }
+.section-title{ font-size:34px; margin:0 0 1rem; text-align:left; }
+
+.contact-box{
+  max-width:760px; background:#fff; border-radius:14px;
+  padding:1.5rem 1.25rem; margin:0; /* 카드 느낌 최소화 */
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+
+.contact-lead{ margin:.25rem 0 1rem; color:#111; font-size:1.05rem; line-height:1.7; }
+.contact-address{ margin:0 0 .75rem; font-style:normal; }
+.mailto{
+  font-weight:700; color:#0f172a; text-decoration:none;
+  border-bottom: 1px dashed rgba(15,23,42,.35);
+}
+.mailto:hover{ color:#0b1225; border-bottom-color: rgba(15,23,42,.6); }
+
+.contact-actions{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 0; }
+.contact-note{ display:block; margin-top:.75rem; color:#6b7280; }
+
+/* 버튼 */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.625rem .9rem; border-radius:10px; font-weight:700;
+  border:1px solid rgba(0,0,0,.08); background:#fff; color:#0f172a;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.08); }
+
+.btn.mail-cta{
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    linear-gradient(90deg,#7c3aed,#06b6d4,#22c55e,#f59e0b,#f43f5e,#7c3aed) border-box;
+  border:2px solid transparent;
+  background-size:100% 100%, 300% 100%;
+  background-position:0 0, 0% 50%;
+}
+.btn.mail-cta:hover{ background-position:0 0, 100% 50%; }
+
+/* 접근성용 숨김 텍스트 */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+  clip:rect(0 0 0 0); clip-path: inset(50%); border:0; white-space:nowrap;
+}
+
+/* 모바일 정렬 */
+@media (max-width:768px){
+  .contact-inner{ padding:2rem 1rem; }
+  .section-title{ text-align:center; }
+  .contact-box{ margin-inline:auto; }
+  .contact-actions{ justify-content:center; }
+  .mailto{ display:inline-block; }
 }
