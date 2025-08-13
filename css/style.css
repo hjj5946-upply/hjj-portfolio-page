@@ -799,9 +799,8 @@ html {
 }
 
 .skills-marquee {
-  /* background: #f9f9f9; */
-  background: #ffffff;
-  padding: 2rem 0 3rem;
+  background: #ebebeb;
+  padding: 7rem 0 7rem 0;
 }
 
 .marquee-row {
