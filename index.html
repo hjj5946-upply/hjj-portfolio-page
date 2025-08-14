@@ -92,57 +92,70 @@
     });
   </script>
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.copy-btn');
-  const status = document.getElementById('copy-status');
-  if (!btn) return;
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('.copy-btn');
+      const status = document.getElementById('copy-status');
+      if (!btn) return;
 
-  btn.addEventListener('click', async () => {
-    const email = btn.dataset.copy;
-    try {
-      await (navigator.clipboard?.writeText(email));
-      btn.textContent = '복사됨';
-      status.textContent = '이메일 주소가 복사되었습니다.';
-    } catch {
-      // Fallback
-      const ta = document.createElement('textarea');
-      ta.value = email; document.body.appendChild(ta);
-      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      btn.textContent = '복사됨';
-      status.textContent = '이메일 주소가 복사되었습니다.';
-    }
-    setTimeout(() => { btn.textContent = '주소 복사'; status.textContent=''; }, 1600);
-  });
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.copy-btn');
-  const status = document.getElementById('copy-status');
-  if (!btn) return;
+      btn.addEventListener('click', async () => {
+        const email = btn.dataset.copy;
+        try {
+          await (navigator.clipboard?.writeText(email));
+          btn.textContent = '복사됨';
+          status.textContent = '이메일 주소가 복사되었습니다.';
+        } catch {
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = email; document.body.appendChild(ta);
+          ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+          btn.textContent = '복사됨';
+          status.textContent = '이메일 주소가 복사되었습니다.';
+        }
+        setTimeout(() => { btn.textContent = '주소 복사'; status.textContent=''; }, 1600);
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('.copy-btn');
+      const status = document.getElementById('copy-status');
+      if (!btn) return;
 
-  const email = btn.dataset.copy;
-  const original = btn.innerHTML;
-  const checkIcon = `
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-      <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`;
+      const email = btn.dataset.copy;
+      const original = btn.innerHTML;
+      const checkIcon = `
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
 
-  btn.addEventListener('click', async () => {
-    try {
-      await (navigator.clipboard?.writeText(email));
-    } catch {
-      const ta = document.createElement('textarea');
-      ta.value = email; document.body.appendChild(ta);
-      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-    }
-    btn.innerHTML = checkIcon;
-    status.textContent = '이메일 주소가 복사되었습니다.';
-    setTimeout(() => { btn.innerHTML = original; status.textContent=''; }, 1200);
-  });
-});
-</script>
+      btn.addEventListener('click', async () => {
+        try {
+          await (navigator.clipboard?.writeText(email));
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = email; document.body.appendChild(ta);
+          ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        }
+        btn.innerHTML = checkIcon;
+        status.textContent = '이메일 주소가 복사되었습니다.';
+        setTimeout(() => { btn.innerHTML = original; status.textContent=''; }, 1200);
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const list = document.querySelector('.timeline');
+      if (!list) return;
+      const items = list.querySelectorAll('.tl-item');
+      if (items.length <= 5) return;
+
+      /* 0번째 항목 꼭대기 ~ 5번째(=6번째) 항목 꼭대기 거리 = 앞의 5개 높이 합 */
+      const visibleHeight = items[5].offsetTop - items[0].offsetTop;
+      list.style.maxHeight = visibleHeight + 'px';
+      list.style.overflowY = 'auto';
+    });
+    </script>
 </head>
 <body>
   <!-- header -->
@@ -282,6 +295,22 @@ document.addEventListener('DOMContentLoaded', () => {
               <span>Event-driven</span><span>Celery</span><span>FCM</span>
             </div>
           </li>
+
+          <!-- 항목 3 -->
+          <li class="tl-item">
+            <header class="tl-head">
+              <div class="dot"></div>
+              <h3 class="role">시스템 고도화</h3>
+              <time class="period">프리랜서 / 사이드</time>
+            </header>
+            <ul class="bullets">
+              <li>알림 파이프라인 개편: 승인 TAT <b>3h → 10m</b></li>
+              <li>Outbox, 백오프 재시도, FCM 토픽 분리로 실패율 <b>0.4%</b></li>
+            </ul>
+            <div class="tags">
+              <span>Event-driven</span><span>Celery</span><span>FCM</span>
+            </div>
+          </li>
         </ol>
       </div>
     </section>
@@ -291,23 +320,18 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="projects-gallery-container">
         <h1 style="font-size: 34px;">Projects</h1>
         <div class="gallery-grid">
-          <!-- 카드 1 -->
           <a class="gallery-card" href="assets/img/pf-1.png" target="_blank" aria-label="프로젝트 1 상세 보기">
             <img class="gallery-img" src="assets/img/pf-1.png" alt="프로젝트 1 이미지" loading="lazy">
           </a>
-          <!-- 카드 2 -->
           <a class="gallery-card" href="assets/img/pf-2.png" target="_blank" aria-label="프로젝트 2 상세 보기">
             <img class="gallery-img" src="assets/img/pf-2.png" alt="프로젝트 2 이미지" loading="lazy">
           </a>
-          <!-- 카드 3 -->
           <a class="gallery-card" href="assets/img/pf-3.png" target="_blank" aria-label="프로젝트 3 상세 보기">
             <img class="gallery-img" src="assets/img/pf-3.png" alt="프로젝트 3 이미지" loading="lazy">
           </a>
-          <!-- 카드 4 -->
           <a class="gallery-card" href="assets/img/pf-4.png" target="_blank" aria-label="프로젝트 4 상세 보기">
             <img class="gallery-img" src="assets/img/pf-4.png" alt="프로젝트 4 이미지" loading="lazy">
           </a>
-
           <a class="gallery-card" href="assets/img/pf-4.png" target="_blank" aria-label="프로젝트 4 상세 보기">
             <img class="gallery-img" src="assets/img/pf-4.png" alt="프로젝트 4 이미지" loading="lazy">
           </a>
@@ -325,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="contact-row">
           <!-- 클릭 시 메일 앱 열기 -->
-          <a class="mailto" href="mailto:ekqkr1@ekqkr1.com">ekqkr1@ekqkr1.com</a>
+          <a class="mailto" href="mailto:ekqkr1@naver.com">ekqkr1@naver.com</a>
 
           <!-- 아이콘 버튼: 주소 복사 -->
           <!-- <button class="copy-btn" type="button" data-copy="ekqkr1@ekqkr1.com" aria-label="이메일 주소 복사" title="주소 복사">

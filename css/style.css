@@ -920,6 +920,31 @@ html {
   .dot{ left:-.15rem; }
 }
 
+/* 타임라인 내부 스크롤 */
+.timeline{
+  /* 데스크톱/모바일 공통 최대높이: 상황에 맞게 수치만 조정 */
+  max-height: clamp(420px, 60vh, 560px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+
+  /* 상하단 페이드(스크롤 힌트) */
+  --fade: 28px;
+  -webkit-mask-image: linear-gradient(to bottom,
+    transparent, #000 var(--fade),
+    #000 calc(100% - var(--fade)), transparent);
+          mask-image: linear-gradient(to bottom,
+    transparent, #000 var(--fade),
+    #000 calc(100% - var(--fade)), transparent);
+}
+
+/* 스크롤바 최소화(선택) */
+.timeline::-webkit-scrollbar{ width:8px; }
+.timeline::-webkit-scrollbar-thumb{
+  background: rgba(107, 107, 107, 0.18); border-radius:999px;
+}
+.timeline{ scrollbar-width: thin; scrollbar-color: rgba(0,0,0,.25) transparent; }
+
 
 
 /* 섹션5 */
@@ -1022,12 +1047,12 @@ html {
   .bottom-nav::-webkit-scrollbar-track { background: transparent; }
 }
 
+
+
 /* 섹션 6 */
-/* 최소 레이아웃 */
 .contact-min{ padding:3rem 3rem; }
 .contact-line{ margin:0 0 .5rem; color:#111; }
 
-/* 메일 링크: 심플 호버 */
 .mailto{
   font-weight:700; color:#0f172a; text-decoration:none;
   border-bottom:1px solid rgba(15,23,42,.25);
