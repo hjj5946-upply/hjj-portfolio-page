@@ -5,6 +5,7 @@
   일부 이미지/아이콘 출처:
     - Font Awesome (https://fontawesome.com)
     - Stack Image (https://www.flaticon.com/)
+    - https://wsss.tistory.com/
   이 자료는 개인 포트폴리오 용도로만 사용됩니다.
 -->
 <head>
@@ -20,43 +21,10 @@
       e.preventDefault();
     });
   </script> 
-  <!-- <script>
-    const $key = (key) =>
-      document.querySelector(`kbd[data-key='${key}'], kbd[data-alt='${key}']`);
-
-    const codeToElement = {
-      CapsLock: $key('caps'),
-      Space: $key('space'),
-      Backslash: document.getElementById('backslash'),
-      Quote: document.getElementById('quote'),
-      ShiftLeft: $key('lshift'),
-      ShiftRight: $key('rshift'),
-      ControlLeft: $key('lctrl'),
-      ControlRight: $key('rctrl'),
-      AltLeft: $key('lalt'),
-      AltRight: $key('ralt'),
-      MetaLeft: $key('lwin'),
-      MetaRight: $key('rwin')
-    };
-
-    window.addEventListener('keydown', (e) => {
-      const key = (e.key || '').toLowerCase();
-      const el = codeToElement[e.code] || $key(key);
-      if (el) { el.classList.add('pressed'); e.preventDefault(); }
-    });
-
-    window.addEventListener('keyup', (e) => {
-      const key = (e.key || '').toLowerCase();
-      const el = codeToElement[e.code] || $key(key);
-      if (el) { el.classList.remove('pressed'); e.preventDefault(); }
-    });
-  </script> -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const el = document.querySelector('.rgb-text');
       if (!el) return;
-
-      // 이미 분해된 경우 중복 방지
       if (!el.dataset.rgbSplit) {
         const raw = el.textContent;
         el.innerHTML = Array.from(raw).map(c => `<span>${c}</span>`).join('');
@@ -66,7 +34,6 @@
       const nodes = el.querySelectorAll('span');
       const hues  = Array.from({length: nodes.length}, (_, i) => Math.round(i * (360 / nodes.length)));
 
-      // 초기 색 지정(+ 중요도 부여로 !important 이김)
       for (let i=0;i<nodes.length;i++){
         nodes[i].style.setProperty('color', `hsl(${hues[i]}, 100%, 58%)`, 'important');
       }
@@ -91,77 +58,82 @@
       originals.forEach(node => track.appendChild(node.cloneNode(true)));
     });
   </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.querySelector('.copy-btn');
-      const status = document.getElementById('copy-status');
-      if (!btn) return;
 
-      btn.addEventListener('click', async () => {
-        const email = btn.dataset.copy;
-        try {
-          await (navigator.clipboard?.writeText(email));
-          btn.textContent = '복사됨';
-          status.textContent = '이메일 주소가 복사되었습니다.';
-        } catch {
-          // Fallback
-          const ta = document.createElement('textarea');
-          ta.value = email; document.body.appendChild(ta);
-          ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-          btn.textContent = '복사됨';
-          status.textContent = '이메일 주소가 복사되었습니다.';
-        }
-        setTimeout(() => { btn.textContent = '주소 복사'; status.textContent=''; }, 1600);
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.querySelector('.copy-btn');
-      const status = document.getElementById('copy-status');
-      if (!btn) return;
-
-      const email = btn.dataset.copy;
-      const original = btn.innerHTML;
-      const checkIcon = `
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-          <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`;
-
-      btn.addEventListener('click', async () => {
-        try {
-          await (navigator.clipboard?.writeText(email));
-        } catch {
-          const ta = document.createElement('textarea');
-          ta.value = email; document.body.appendChild(ta);
-          ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-        }
-        btn.innerHTML = checkIcon;
-        status.textContent = '이메일 주소가 복사되었습니다.';
-        setTimeout(() => { btn.innerHTML = original; status.textContent=''; }, 1200);
-      });
-    });
-  </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const list = document.querySelector('.timeline');
       if (!list) return;
       const items = list.querySelectorAll('.tl-item');
       if (items.length <= 5) return;
-
-      /* 0번째 항목 꼭대기 ~ 5번째(=6번째) 항목 꼭대기 거리 = 앞의 5개 높이 합 */
       const visibleHeight = items[5].offsetTop - items[0].offsetTop;
       list.style.maxHeight = visibleHeight + 'px';
       list.style.overflowY = 'auto';
     });
     </script>
+
+    <!-- <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const box = document.querySelector('#contact .contact-min');
+        if(!box) return;
+
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting){
+              box.classList.add('in');  
+              obs.unobserve(box);          
+            }
+          });
+        }, { threshold: 1 });
+
+        io.observe(box);
+      });
+    </script> -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 섹션 진입 시 1회 애니메이션
+        const sec = document.querySelector('#contact');
+        if (sec) {
+          const io = new IntersectionObserver((entries, o) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) { sec.classList.add('in'); o.unobserve(sec); }
+            });
+          }, { threshold: 0.35 });
+          io.observe(sec);
+        }
+
+        // 주소 복사
+        const btn = document.querySelector('#contact .copy-btn');
+        const status = document.getElementById('copy-status');
+        if (btn) {
+          const email = btn.dataset.copy;
+          const original = btn.innerHTML;
+          const checkIcon = `
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>`;
+          btn.addEventListener('click', async () => {
+            try { await navigator.clipboard.writeText(email); }
+            catch {
+              const ta = document.createElement('textarea');
+              ta.value = email; document.body.appendChild(ta);
+              ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+            }
+            btn.innerHTML = checkIcon;
+            if (status) status.textContent = '이메일 주소가 복사되었습니다.';
+            setTimeout(() => { btn.innerHTML = original; if (status) status.textContent = ''; }, 1200);
+          });
+        }
+      });
+    </script>
+
 </head>
 <body>
   <!-- header -->
   <header class="top-bar">
     <div class="logo" style="cursor: default;">Hong Jeong-jun's Portfolio</div>
   </header>
+  <!-- main -->
   <main>
     <!-- 섹션1: 카테고리 -->
     <section id="intro" class="section section-one">
@@ -186,7 +158,7 @@
     <!-- 섹션2: About me -->
     <section id="about" class="section about-section">
       <div class="about-inner">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title" style="cursor: default;">About Me</h2>
         <div class="about-wrap">
           <div class="about-photo">
             <img src="assets/img/profile-img.png" alt="프로필 이미지" />
@@ -243,7 +215,7 @@
     <!-- 섹션4: works -->
     <section id="work" class="section work-section" aria-labelledby="work-heading">
       <div class="work-inner">
-        <h2 id="work-heading" class="section-title">Works</h2>
+        <h2 id="work-heading" class="section-title" style="cursor: default;">Works</h2>
 
         <ol class="timeline">
           <!-- 항목 1 -->
@@ -318,61 +290,80 @@
     <!-- 섹션5: Projects -->
     <section id="projects" class="section-five projects-gallery-section" aria-labelledby="intro-heading">
       <div class="projects-gallery-container">
-        <h1 style="font-size: 34px;">Projects</h1>
+        <h1 style="font-size: 34px; cursor: default;">Projects</h1>
         <div class="gallery-grid">
-          <a class="gallery-card" href="assets/img/pf-1.png" target="_blank" aria-label="프로젝트 1 상세 보기">
-            <img class="gallery-img" src="assets/img/pf-1.png" alt="프로젝트 1 이미지" loading="lazy">
+          <a class="gallery-card" href="assets/img/btorage_client.PNG" target="_blank" aria-label="프로젝트 1 상세 보기">
+            <div class="media">
+              <img class="gallery-img" src="assets/img/btorage_client.PNG" alt="프로젝트 1 이미지" loading="lazy" decoding="async">
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">프로젝트 제목 1</h3>
+              <p class="card-desc">
+                <span class="chip">Web</span> · 랜딩/SSR · React/TypeScript
+              </p>
+            </div>
           </a>
-          <a class="gallery-card" href="assets/img/pf-2.png" target="_blank" aria-label="프로젝트 2 상세 보기">
-            <img class="gallery-img" src="assets/img/pf-2.png" alt="프로젝트 2 이미지" loading="lazy">
+
+          <a class="gallery-card" href="assets/img/btorage_admin.PNG" target="_blank" aria-label="프로젝트 2 상세 보기">
+            <div class="media">
+              <img class="gallery-img" src="assets/img/btorage_admin.PNG" alt="프로젝트 2 이미지" loading="lazy" decoding="async">
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">프로젝트 제목 2</h3>
+              <p class="card-desc">
+                <span class="chip">App</span> · Android · Kotlin/Compose
+              </p>
+            </div>
           </a>
-          <a class="gallery-card" href="assets/img/pf-3.png" target="_blank" aria-label="프로젝트 3 상세 보기">
-            <img class="gallery-img" src="assets/img/pf-3.png" alt="프로젝트 3 이미지" loading="lazy">
+
+          <a class="gallery-card" href="assets/img/solsystem_main.PNG" target="_blank" aria-label="프로젝트 3 상세 보기">
+            <div class="media">
+              <img class="gallery-img" src="assets/img/solsystem_main.PNG" alt="프로젝트 2 이미지" loading="lazy" decoding="async">
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">솔시스템 홈페이지 제작</h3>
+              <p class="card-desc">
+                <span class="chip">Web</span> · UI/UX · 디자인
+              </p>
+            </div>
           </a>
-          <a class="gallery-card" href="assets/img/pf-4.png" target="_blank" aria-label="프로젝트 4 상세 보기">
-            <img class="gallery-img" src="assets/img/pf-4.png" alt="프로젝트 4 이미지" loading="lazy">
-          </a>
-          <a class="gallery-card" href="assets/img/pf-4.png" target="_blank" aria-label="프로젝트 4 상세 보기">
-            <img class="gallery-img" src="assets/img/pf-4.png" alt="프로젝트 4 이미지" loading="lazy">
-          </a>
-          <a class="gallery-card" href="assets/img/pf-4.png" target="_blank" aria-label="프로젝트 4 상세 보기">
-            <img class="gallery-img" src="assets/img/pf-4.png" alt="프로젝트 4 이미지" loading="lazy">
+
+          <a class="gallery-card" href="assets/img/pf-2.png" target="_blank" aria-label="프로젝트 4 상세 보기">
+            <div class="media">
+              <img class="gallery-img" src="assets/img/pf-2.png" alt="프로젝트 2 이미지" loading="lazy" decoding="async">
+            </div>
+            <div class="card-info">
+              <h3 class="card-title">픽스터디 홈페이지 제작</h3>
+              <p class="card-desc">
+                <span class="chip">Web</span> · 풀페이지 · 풀반응형 · UI/UX · 디자인
+              </p>
+            </div>
           </a>
         </div>
       </div>
     </section>
 
     <!-- 섹션6: Contact -->
-    <section id="contact" class="section-sub" style="background-color:#f9f9f9; padding: 4rem 0">
-      <div class="contact-min">
-        <p class="contact-line">문의사항은 아래 메일로 문의 주세요. 신속하게 답변드리겠습니다.</p>
+    <section id="contact" class="section-sub contact-cta">
+      <div class="contact-cta-inner">
+        <p class="cta-lead" style="cursor: default;">함께 일할 인재를 찾고 계신가요?</p>
+        <p class="cta-sub" style="cursor: default;">아래 메일로 문의 주시면 빠르게 답변드리겠습니다.</p>
 
-        <div class="contact-row">
-          <!-- 클릭 시 메일 앱 열기 -->
-          <a class="mailto" href="mailto:ekqkr1@naver.com">ekqkr1@naver.com</a>
-
-          <!-- 아이콘 버튼: 주소 복사 -->
-          <!-- <button class="copy-btn" type="button" data-copy="ekqkr1@ekqkr1.com" aria-label="이메일 주소 복사" title="주소 복사">
+        <div class="cta-email-row">
+          <a class="cta-email" href="mailto:ekqkr1@naver.com">ekqkr1@naver.com</a>
+          <button class="copy-btn" type="button" data-copy="ekqkr1@naver.com" aria-label="이메일 주소 복사">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
               <rect x="9" y="9" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
               <rect x="2" y="2" width="13" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
             </svg>
           </button>
-          <span id="copy-status" class="sr-only" aria-live="polite"></span> -->
+          <span id="copy-status" class="sr-only" aria-live="polite"></span>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- TOP 버튼 -->
-  <button id="scrollTopBtn" class="scroll-top-btn" type="button" title="맨 위로 이동" >
-    <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
   <!-- footer -->
-  <footer class="bottom-bar" style="background-color: #000116;">
+  <footer class="bottom-bar" style="background-color: #000222;">
     <nav class="bottom-nav">
       <a href="#intro">Intro</a>
       <a target="_blank" href="#about">GitHub</a>
@@ -380,6 +371,13 @@
       <a target="_blank" href="#">Resume</a>
     </nav>
   </footer>
+
+  <!-- TOP 버튼 -->
+  <button id="scrollTopBtn" class="scroll-top-btn" type="button" title="맨 위로 이동" >
+    <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
   <script src="js/script.js"></script>
 </body>
