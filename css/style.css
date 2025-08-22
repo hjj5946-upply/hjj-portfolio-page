@@ -106,6 +106,12 @@ body {
   mix-blend-mode: screen; 
 }
 
+@media (min-width: 768px) {
+    .rgb-text{
+        display: none; /* 모바일에서는 명령창 숨김 */
+    }
+}
+
 .rgb-text{
   font-family: "Libre Barcode 39 Text", system-ui, sans-serif;
   font-weight: 400;
@@ -196,11 +202,9 @@ body {
     position: absolute;
     bottom: calc(var(--rb-pad-y) + 250px);
     right: var(--rb-pad-x);
-    /* top: 20%;
-    right: 1%; */
     transform: translateX(-50%);
-    width: min(85vw, 700px);
-    height: min(45vh, 350px);
+    width: min(85vw, 710px);
+    height: min(45vh, 410px);
     background: #000;
     border: 1px solid #555;
     border-radius: 6px 6px 0 0;
@@ -208,8 +212,8 @@ body {
     overflow: hidden;
     z-index: 2;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    --rb-pad-x: min(6vw, 650px);
-    --rb-pad-y: min(4vh, 32px);
+    --rb-pad-x: min(4vw, -100px);
+    --rb-pad-y: min(4vh, 0px);
 }
 .cmd-titlebar {
     height: 28px;
@@ -301,7 +305,7 @@ body {
 }
 
 /* Mobile Responsive */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .cmd-window {
         width: 92vw;
         height: 40vh;
@@ -310,7 +314,7 @@ body {
     .ascii-art {
         font-size: 6px;
     }
-}
+} */
 @media (max-width: 768px) {
     .cmd-window {
         display: none; /* 모바일에서는 명령창 숨김 */
