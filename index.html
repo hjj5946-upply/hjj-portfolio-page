@@ -90,7 +90,6 @@
       });
     </script> -->
     <script>
-        // 새로 추가: CMD 기능
         document.addEventListener('DOMContentLoaded', function() {
             const asciiArt = `
 ██╗  ██╗ ██████╗ ███╗   ██╗ ██████╗       ██╗███████╗ ██████╗ ███╗   ██╗ ██████╗       ██╗██╗   ██╗███╗   ██╗
@@ -100,6 +99,7 @@
 ██║  ██║╚██████╔╝██║ ╚████║╚██████╔╝ ╚█████╔╝███████╗╚██████╔╝██║ ╚████║╚██████╔╝  ╚════╝ ╚██████╔╝██║ ╚████║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝   ╚════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝         ╚═════╝ ╚═╝  ╚═══╝
 `;
+
             // ASCII Art 타이핑 애니메이션
             const asciiElement = document.getElementById('asciiArt');
             let i = 0;
@@ -154,8 +154,8 @@
                         cmdContent.innerHTML = `
                             <div class="ascii-art">${asciiArt}</div>
                             <div class="cmd-prompt">
-                                <span class="prompt-text">C:\\Developer></span>
-                                <input type="text" class="user-input" placeholder="type 'help' for commands" autocomplete="off">
+                                <span class="prompt-text">HJJ:\\Developer></span>
+                                <input type="text" class="user-input" placeholder="홍정준의 포트폴리오에 오신걸 환영합니다." autocomplete="off">
                                 <div class="typing-cursor"></div>
                             </div>`;
                         const newInput = cmdContent.querySelector('.user-input');
@@ -175,7 +175,7 @@
                 }
                 
                 const commandLine = document.createElement('div');
-                commandLine.innerHTML = `<span style="color: #0f0;">C:\\Developer></span> ${command}`;
+                commandLine.innerHTML = `<span style="color: #e4e4e4;">HJJ:\\Developer></span> ${command}`;
                 commandLine.style.marginTop = '8px';
                 commandLine.style.fontSize = '12px';
                 
@@ -225,8 +225,8 @@
             <div class="ascii-art" id="asciiArt"></div>
             <div class="cmd-prompt">
                 <span class="prompt-text">HJJ:\Developer></span>
-                <input type="text" class="user-input" placeholder="홍정준의 포트폴리오에 오신걸 환영합니다." autocomplete="off">
-                <div class="typing-cursor"></div>
+                <input type="text" class="user-input" placeholder="'help'를 입력해보세요." autocomplete="off">
+                                <div class="typing-cursor"></div>
             </div>
         </div>
       </div>

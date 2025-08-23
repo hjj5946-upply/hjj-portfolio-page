@@ -202,7 +202,7 @@ body {
     position: absolute;
     bottom: calc(var(--rb-pad-y) + 250px);
     right: var(--rb-pad-x);
-    transform: translateX(-50%);
+    /* transform: translateX(-50%); */
     width: min(85vw, 710px);
     height: min(45vh, 410px);
     background: #000;
@@ -212,9 +212,10 @@ body {
     overflow: hidden;
     z-index: 2;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    --rb-pad-x: min(4vw, -100px);
-    --rb-pad-y: min(4vh, 0px);
+    --rb-pad-x: min(4vw, 100px);
+    --rb-pad-y: min(4vh, 0);
 }
+
 .cmd-titlebar {
     height: 28px;
     background: linear-gradient(to bottom, #4a90e2, #357abd);
@@ -304,17 +305,6 @@ body {
     51%, 100% { opacity: 0; }
 }
 
-/* Mobile Responsive */
-/* @media (max-width: 768px) {
-    .cmd-window {
-        width: 92vw;
-        height: 40vh;
-        top: 10%;
-    }
-    .ascii-art {
-        font-size: 6px;
-    }
-} */
 @media (max-width: 768px) {
     .cmd-window {
         display: none; /* 모바일에서는 명령창 숨김 */
