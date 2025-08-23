@@ -59,7 +59,26 @@
       originals.forEach(node => track.appendChild(node.cloneNode(true)));
     });
   </script>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactSection = document.querySelector('.contact-cta');
+    
+    // Intersection Observer로 스크롤 시 애니메이션 트리거
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+            }
+        });
+    }, {
+        threshold: 0.3 // 30% 보일 때 트리거
+    });
+    
+    if (contactSection) {
+        observer.observe(contactSection);
+    }
+});
+</script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const list = document.querySelector('.timeline');
@@ -142,7 +161,7 @@
                         response.innerHTML = 'Web Developer & Frontend Specialist';
                         break;
                     case 'skills':
-                        response.innerHTML = 'JavaScript, React, Node.js, Python, HTML/CSS';
+                        response.innerHTML = 'JavaScript, React, Python(FastAPI), HTML/CSS, JAVA, Spring Boot, Kotlin(Android)';
                         break;
                     case 'projects':
                         response.innerHTML = 'Portfolio Website, Web Applications & more';
@@ -485,7 +504,6 @@
       <div class="contact-cta-inner">
         <p class="cta-lead" style="cursor: default;">함께 일할 인재를 찾고 계신가요?</p>
         <p class="cta-sub" style="cursor: default;">아래 메일로 문의 주시면 빠르게 답변드리겠습니다.</p>
-
         <div class="cta-email-row">
           <a class="cta-email" href="mailto:ekqkr1@naver.com">ekqkr1@naver.com</a>
           <button class="copy-btn" type="button" data-copy="ekqkr1@naver.com" aria-label="이메일 주소 복사">
