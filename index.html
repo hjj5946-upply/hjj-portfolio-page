@@ -12,16 +12,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HJJ | 웹 | 포트폴리오</title>
+  <meta name="description" content="Kotlin(Android), React/TS, FastAPI, Spring Boot. E2E 설계·개발·운영. WMS/WCS 경험.">
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:title" content="HJJ | 웹 | 포트폴리오">
+  <meta property="og:description" content="엔드투엔드로 책임지는 풀스택 개발자 홍정준의 작업과 프로젝트.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://example.com/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
+  <title>HJJ | Web | Resume</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
-  <script>
+  <!-- <script>
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
     });
-  </script> 
+  </script>  -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const el = document.querySelector('.rgb-text');
@@ -42,6 +51,28 @@
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReduced) return;
 
+      (function(){
+    const el = document.querySelector('.rgb-text');
+    if (!el) return;
+    if (!el.dataset.rgbSplit) {
+      const raw = el.textContent;
+      el.innerHTML = Array.from(raw).map(c => `<span>${c}</span>`).join('');
+      el.dataset.rgbSplit = '1';
+    }
+    const nodes = el.querySelectorAll('span');
+    const hues  = Array.from({length: nodes.length}, (_, i) => Math.round(i * (360 / nodes.length)));
+    for (let i=0;i<nodes.length;i++) nodes[i].style.setProperty('color', `hsl(${hues[i]},100%,58%)`, 'important');
+    if (prefersReduced) return;
+    function tick(){ for (let i=0;i<hues.length;i++){ hues[i]=(hues[i]-1+360)%360; nodes[i].style.setProperty('color', `hsl(${hues[i]},100%,58%)`, 'important'); } requestAnimationFrame(tick); }
+    requestAnimationFrame(tick);
+  })();
+
+  // 마키 비활성(선택)
+  if (prefersReduced) {
+    const marquee = document.querySelector('.skills-marquee .marquee-track');
+    if (marquee) marquee.style.animation = 'none';
+  }
+
       function tick(){
         for (let i=0;i<hues.length;i++){
           hues[i] = (hues[i] - 1 + 360) % 360;
@@ -53,10 +84,21 @@
     });
   </script>
   <script>
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   const track = document.querySelector('#skills .marquee-track');
+    //   const originals = [...track.children];
+    //   originals.forEach(node => track.appendChild(node.cloneNode(true)));
+    // });
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.querySelector('#skills .marquee-track');
+      if (!track) return;
       const originals = [...track.children];
-      originals.forEach(node => track.appendChild(node.cloneNode(true)));
+      originals.forEach(node => {
+        const clone = node.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.setAttribute('role', 'presentation');
+        track.appendChild(clone);
+      });
     });
   </script>
 <script>
@@ -219,7 +261,7 @@
 <body>
   <!-- header -->
   <header class="top-bar">
-    <div class="logo" style="cursor: default;">Hong Jeong-jun's Portfolio</div>
+    <div class="logo" style="cursor: default;">Hong Jeong-jun's Resume</div>
   </header>
   <!-- main -->
   <main>
@@ -249,11 +291,11 @@
             </div>
         </div>
       </div>
-      <div class="categories">
-        <div class="category" data-target="about"><h1><span>About Me </span><i class="fa-solid fa-angle-right"></i></h1></div>
-        <div class="category" data-target="work"><h1><span>Works </span><i class="fa-solid fa-angle-right"></i></h1></div>
-        <div class="category" data-target="projects"><h1><span>Projects </span><i class="fa-solid fa-angle-right"></i></h1></div>
-        <div class="category" data-target="contact"><h1><span>Contact </span><i class="fa-solid fa-angle-right"></i></h1></div>
+      <div class="categories" role="navigation" aria-label="Sections">
+        <div class="category" data-target="about" type="button"><h1><span>About Me </span><i class="fa-solid fa-angle-right" aria-hidden="true"></i></h1></div>
+        <div class="category" data-target="work" type="button"><h1><span>Works </span><i class="fa-solid fa-angle-right" aria-hidden="true"></i></h1></div>
+        <div class="category" data-target="projects" type="button"><h1><span>Projects </span><i class="fa-solid fa-angle-right" aria-hidden="true"></i></h1></div>
+        <div class="category" data-target="contact" type="button"><h1><span>Contact </span><i class="fa-solid fa-angle-right" aria-hidden="true"></i></h1></div>
       </div>
     </section>
 
@@ -531,9 +573,9 @@
   <footer class="bottom-bar" style="background-color: #000222;">
     <nav class="bottom-nav">
       <a href="#intro">Intro</a>
-      <a target="_blank" href="https://github.com/hjj5946-upply">GitHub</a>
-      <a target="_blank" href="https://www.instagram.com/h_j_jjjjjjjjjj/">Instagram</a>
-      <a target="_blank" href="https://hazel-gas-8a5.notion.site/25989c08957280c1b042dd81d880776e?source=copy_link">Resume</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://github.com/hjj5946-upply">GitHub</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/h_j_jjjjjjjjjj/">Instagram</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://hazel-gas-8a5.notion.site/25989c08957280c1b042dd81d880776e?source=copy_link">Resume</a>
     </nav>
   </footer>
 
