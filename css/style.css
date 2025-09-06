@@ -401,7 +401,7 @@ body {
 
 .about-photo{
   justify-self:start;
-  width:min(420px,100%);
+  width:min(400px,100%);
   aspect-ratio:3/4;
   border-radius:12px; overflow:hidden;
   box-shadow:0 8px 24px rgba(0,0,0,.08);
@@ -434,7 +434,7 @@ body {
 
 .about-meta { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; }
 .about-intro{
-  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+  font-size: clamp(0.9rem, 0.8rem + 0.4vw, 1.122rem);
   line-height: 1.5;
   letter-spacing: 0.02em;      
   color:#222;
